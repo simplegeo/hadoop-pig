@@ -1,0 +1,22 @@
+hadoop-pig (0.8.0+3-1) cloudera; urgency=low
+
+  Commit 221c28f846b0a890184c437833eb53ddc3a0b50e:
+    CLOUDERA-BUILD. Changes to support CDH Mavenization.
+    
+ -- Andrew Bayer <andrew.bayer@gmail.com>  Mon, 14 Feb 2011 09:05:05 -0800
+
+
+hadoop-pig (0.8.0+3-1) cloudera; urgency=low
+
+  Commit 6bb7c6ab6161898e29d22681c684754b89a5498d:
+    CLOUDERA-BUILD. Build against Hadoop from CDH3.
+    
+ -- Eli Collins <eli@cloudera.com>  Tue, 04 Jan 2011 11:58:40 -0800
+
+
+hadoop-pig (0.8.0+3-1) cloudera; urgency=low
+
+  Commit c169940bf826e222655761b9c4eb0604b9c6be4a:
+    CLOUDERA-BUILD. Add cloudera build directory and example confs.
+ -- Eli Collins <eli@cloudera.com>  Tue, 04 Jan 2011 11:58:36 -0800
+
