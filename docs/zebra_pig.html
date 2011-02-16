@@ -1,0 +1,399 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>Zebra and Pig</title>
+<link type="text/css" href="skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="skin/print.css" rel="stylesheet">
+<link type="text/css" href="skin/profile.css" rel="stylesheet">
+<script src="skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://www.apache.org/">Apache</a> &gt; <a href="http://hadoop.apache.org/">Hadoop</a> &gt; <a href="http://hadoop.apache.org/pig/">Pig</a><script src="skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<div class="grouplogo">
+<a href="http://hadoop.apache.org/"><img class="logoImage" alt="Hadoop" src="images/hadoop-logo.jpg" title="Apache Hadoop"></a>
+</div>
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogo">
+<a href="http://hadoop.apache.org/pig/"><img class="logoImage" alt="Pig" src="images/pig-logo.gif" title="A platform for analyzing large datasets."></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Search
+    +-->
+<div class="searchbox">
+<form action="http://www.google.com/search" method="get" class="roundtopsmall">
+<input value="" name="sitesearch" type="hidden"><input onFocus="getBlank (this, 'Search the site with google');" size="25" name="q" id="query" type="text" value="Search the site with google">&nbsp; 
+                    <input name="Search" value="Search" type="submit">
+</form>
+</div>
+<!--+
+    |end search
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="http://hadoop.apache.org/pig/">Project</a>
+</li>
+<li>
+<a class="unselected" href="http://wiki.apache.org/pig/">Wiki</a>
+</li>
+<li class="current">
+<a class="selected" href="index.html">Pig 0.8.0 Documentation</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_1.1', 'skin/')" id="menu_1.1Title" class="menutitle">Pig</div>
+<div id="menu_1.1" class="menuitemgroup">
+<div class="menuitem">
+<a href="index.html">Overview</a>
+</div>
+<div class="menuitem">
+<a href="setup.html">Setup</a>
+</div>
+<div class="menuitem">
+<a href="tutorial.html">Tutorial</a>
+</div>
+<div class="menuitem">
+<a href="piglatin_ref1.html">Pig Latin 1</a>
+</div>
+<div class="menuitem">
+<a href="piglatin_ref2.html">Pig Latin 2</a>
+</div>
+<div class="menuitem">
+<a href="cookbook.html">Cookbook</a>
+</div>
+<div class="menuitem">
+<a href="udf.html">UDFs</a>
+</div>
+<div class="menuitem">
+<a href="pigunit.html">PigUnit</a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_selected_1.2', 'skin/')" id="menu_selected_1.2Title" class="menutitle" style="background-image: url('skin/images/chapter_open.gif');">Zebra</div>
+<div id="menu_selected_1.2" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="zebra_overview.html">Zebra Overview </a>
+</div>
+<div class="menuitem">
+<a href="zebra_users.html">Zebra Users </a>
+</div>
+<div class="menuitem">
+<a href="zebra_reference.html">Zebra Reference </a>
+</div>
+<div class="menuitem">
+<a href="zebra_mapreduce.html">Zebra MapReduce </a>
+</div>
+<div class="menupage">
+<div class="menupagetitle">Zebra Pig </div>
+</div>
+<div class="menuitem">
+<a href="zebra_stream.html">Zebra Streaming </a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.3', 'skin/')" id="menu_1.3Title" class="menutitle">Miscellaneous</div>
+<div id="menu_1.3" class="menuitemgroup">
+<div class="menuitem">
+<a href="api/">API Docs</a>
+</div>
+<div class="menuitem">
+<a href="jdiff/changes.html">API Changes</a>
+</div>
+<div class="menuitem">
+<a href="http://wiki.apache.org/pig/">Wiki</a>
+</div>
+<div class="menuitem">
+<a href="http://wiki.apache.org/pig/FAQ">FAQ</a>
+</div>
+<div class="menuitem">
+<a href="http://hadoop.apache.org/pig/releases.html">Release Notes</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2"></div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<div title="Portable Document Format" class="pdflink">
+<a class="dida" href="zebra_pig.pdf"><img alt="PDF -icon" src="skin/images/pdfdoc.gif" class="skin"><br>
+        PDF</a>
+</div>
+<h1>Zebra and Pig</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#Overview">Overview</a>
+</li>
+<li>
+<a href="#Zebra+Pig+Examples">Zebra Pig Examples</a>
+<ul class="minitoc">
+<li>
+<a href="#Loading+Data">Loading Data</a>
+</li>
+<li>
+<a href="#Map-Side+Group+and+Merge+Join">Map-Side Group and Merge Join</a>
+</li>
+<li>
+<a href="#Sorting+Data">Sorting Data</a>
+</li>
+<li>
+<a href="#Storing+Data">Storing Data</a>
+</li>
+<li>
+<a href="#Simple+Types">Simple Types</a>
+</li>
+<li>
+<a href="#Complex+Types">Complex Types</a>
+</li>
+<li>
+<a href="#HDFS+File+Globs">HDFS File Globs</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+ 
+ <!-- OVERVIEW-->
+   
+<a name="N10010"></a><a name="Overview"></a>
+<h2 class="h3">Overview</h2>
+<div class="section">
+<p>With Pig you can load and store data in Zebra format. You can also take advantage of sorted Zebra tables for map-side groups and merge joins. When working with Pig keep in mind that, unlike MapReduce, you do not need to declare Zebra schemas. Zebra automatically converts Zebra schemas to Pig schemas (and vice versa) for you.</p>
+</div>
+ <!-- END OVERVIEW-->
+ 
+ 
+ <!-- ZEBRA EXAMPLES-->
+   
+<a name="N1001E"></a><a name="Zebra+Pig+Examples"></a>
+<h2 class="h3">Zebra Pig Examples</h2>
+<div class="section">
+<p></p>
+<a name="N10028"></a><a name="Loading+Data"></a>
+<h3 class="h4">Loading Data</h3>
+<p>To load data stored in Zebra format (columns) use the TableLoader function.</p>
+<pre class="code">
+register $LOCATION/zebra-$version.jar;
+A = LOAD 'studenttab' USING org.apache.hadoop.zebra.pig.TableLoader();
+B = FOREACH A GENERATE name, age, gpa;
+</pre>
+<p>There are a couple of things to note:</p>
+<ol>
+ 
+<li>You need to register a Zebra jar file the same way you would do it for any other UDF.</li>
+ 
+<li>You need to place the jar on your classpath.</li>
+  
+</ol>
+<p>Zebra data is self-described meaning that the name and type information is stored with the data; you don't need to provide an AS clause or perform type casting unless you actually need to change the data. To check column names and types, you can run the DESCRIBE statement right after the load:</p>
+<pre class="code">
+A = LOAD 'studenttab' USING org.apache.hadoop.zebra.pig.TableLoader();
+DESCRIBE A;
+A: {name: chararray,age: int,gpa: float}
+</pre>
+<p>You can provide alternative names to the columns with the AS clause. You can also provide alternative types as long as the 
+ original type can be converted to the new type. (One exception to this rule are maps since you can't specify schema for a map. Zebra always creates map values as bytearrays which would require casting to real type in the script. Note that this is not different for treating maps in Pig for any other storage.) For more information see <a href="piglatin_ref2.html#Schemas">Schemas</a> and
+<a href="piglatin_ref2.html#Arithmetic+Operators+and+More">Arithmetic Operators and More</a>.
+ </p>
+<p>You can provide multiple, comma-separated files to the loader:</p>
+<pre class="code">
+A = LOAD 'studenttab, votertab' USING org.apache.hadoop.zebra.pig.TableLoader();
+</pre>
+<p>TableLoader supports efficient column selection; projections are automatically pushed down to the loader. This example tells the loader to only return two columns, name and age.</p>
+<pre class="code">
+A = LOAD 'studenttab' USING org.apache.hadoop.zebra.pig.TableLoader('name, age');
+</pre>
+<a name="N10066"></a><a name="Map-Side+Group+and+Merge+Join"></a>
+<h3 class="h4">Map-Side Group and Merge Join</h3>
+<p>If the input data is globally sorted, merge join and map-side group can be used. Please note the &ldquo;sorted&rdquo; argument that is passed to the loader. This lets the loader know that the data is expected to be globally sorted and that a single key must be given to the same map.</p>
+<p>Here is an example of the merge join. Note that the first argument to the loader is left empty to indicate that all columns are requested.</p>
+<pre class="code">
+A = LOAD'studentsortedtab' USING org.apache.hadoop.zebra.pig.TableLoader('', 'sorted');
+B = LOAD 'votersortedtab' USING org.apache.hadoop.zebra.pig.TableLoader('', 'sorted');
+G = JOIN A BY $0, B By $0 USING "merge";
+</pre>
+<p>Here is an example of a map-side group. Note that multiple sorted files are passed to the loader and that the loader will perform sort-preserving merge to make sure that the data is globally sorted.</p>
+<pre class="code">
+A = LOAD 'studentsortedtab, studentnullsortedtab' using org.apache.hadoop.zebra.pig.TableLoader('name, age, gpa, source_table', 'sorted');
+B = GROUP A BY $0 USING "collected";
+C = FOREACH B GENERATE group, MAX(a.$1);
+</pre>
+<a name="N10082"></a><a name="Sorting+Data"></a>
+<h3 class="h4">Sorting Data</h3>
+<p>
+   Pig allows you to sort data by ascending (ASC) or descending (DESC) order (for more information, see <a href="piglatin_ref2.html#ORDER">ORDER</a>). Currently, Zebra supports tables that are sorted in ascending order. Zebra does not support tables that are sorted in descending order; if Zebra encounters a table to be stored that is sorted in descending order, Zebra will issue a warning and store the table as an unsorted table.</p>
+<a name="N10094"></a><a name="Storing+Data"></a>
+<h3 class="h4">Storing Data</h3>
+<p>To store data in Zebra format use the TableStorer function. Since Zebra does not support anonymous columns, the relation that is stored must have a name (alias) assigned to every column in the relation.</p>
+<pre class="code">
+A = LOAD 'studentsortedtab, studentnullsortedtab' USING org.apache.hadoop.zebra.pig.TableLoader('name, age, gpa, source_table', 'sorted');
+B = GROUP A BY $0 USING "collected";
+C = FOREACH B GENERATE group, MAX(a.$1) AS max_val;
+STORE C INTO 'output' USING org.apache.hadoop.zebra.pig.TableStorer('');
+</pre>
+<a name="N100A6"></a><a name="Simple+Types"></a>
+<h3 class="h4">Simple Types</h3>
+<pre class="code">
+-- The following line is required if the Zebra jar is not part of Hadoop Core
+
+REGISTER $LOCATION/zebra-$version.jar;
+
+-- Load an existing table (a projection string is not specified so all the columns will be loaded)
+
+A = LOAD '$PATH/tbl1' USING org.apache.hadoop.pig.zebra.pig.TableLoader();
+
+-- Store in table format with storage hint '[c1];[c2]' which mean two Column Groups with one column each (note that you do not specify a schema)
+
+STORE A INTO '$PATH/tbl2' USING org.apache.hadoop.zebra.pig.TableStorer('[c1] COMPRESS BY gz; SERIALIZE BY pig;[c2]');
+
+-- Load an existing table (two columns are projected)
+
+B = LOAD '$PATH/tbl3' USING org.apache.hadoop.zebra.pig.TableLoader('c1,c2');
+
+-- Load an existing table (one column is projected)
+
+C = LOAD '$PATH/tbl4' USING org.apache.hadoop.zebra.pig.TableLoader('c2');   
+</pre>
+<a name="N100B5"></a><a name="Complex+Types"></a>
+<h3 class="h4">Complex Types</h3>
+<pre class="code">
+-- The following line is required if the Zebra jar is not part of Hadoop Core
+
+register $LOCATION/zebra-$version.jar;
+
+-- STR_SCHEMA = 
+-- "s1:bool, s2:int, s3:long, s4:float, s5:string, s6:bytes,
+--  r1:record(f1:int, f2:long), r2:record(r3:record(f3:float, f4)), 
+--  m1:map(string),m2:map(map(int)), 
+--  c:collection (r1:record(f13:double, f14:float, f15:bytes))";
+
+-- STR_STORAGE = 
+-- "[s1, s2]; [m1#{a}]; [r1.f1]; [s3, s4, r2.r3.f3]; 
+--  [s5, s6, m2#{x|y}]; [r1.f2, m1#{b}]; [r2.r3.f4, m2#{z}]";
+
+
+-- Load an existing table (two columns are projected)
+
+A = LOAD '$PATH/tbl1' USING org.apache.hadoop.zebra.pig.TableLoader('r1.f2, s1');
+
+-- Store in table format (all columns are stored in one column group)
+
+STORE A INTO '$PATH/tbl2' USING org.apache.hadoop.zebra.pig.TableStorer('');
+
+-- Load an existing table (two columns are projected)
+
+B = LOAD '$PATH/tbl3' USING org.apache.hadoop.zebra.pig.TableLoader('s1, r1');    
+</pre>
+<a name="N100C4"></a><a name="HDFS+File+Globs"></a>
+<h3 class="h4">HDFS File Globs</h3>
+<p>Pig supports HDFS file globs 
+    (for more information 
+    see <a href="http://hadoop.apache.org/common/docs/current/api/org/apache/hadoop/fs/FileSystem.html#globStatus(org.apache.hadoop.fs.Path)">GlobStatus</a>).</p>
+<p>In this example, all Zebra tables in the directory of /path/to/PIG/tables will be loaded as a union (table union). </p>
+<pre class="code">
+ A = LOAD &lsquo;/path/to/PIG/tables/*&rsquo; USING org.apache.hadoop.zebra.pig.TableLoader(&lsquo;&rsquo;);
+</pre>
+<p>In this example, three Zebra tables of t1, t2 and t3 in /path/to/PIG/tables will be loaded as a union (table union). Note that the ordering of the three tables in the union may not necessarily be t1 followed by t2 followed by t3 as you would expect if you specified &lsquo;/path/to/PIG/tables/t1, /path/to/PIG/tables/t2, /path/to/PIG/tables/t3&rsquo;. Instead, the ordering is determined by the ordering the HDFS glob expansion generates, namely, the <em>string ordering</em> of the expanded paths.
+</p>
+<pre class="code">
+ A = LOAD &lsquo;/path/to/PIG/tables/{t1, t2, t3}&rsquo; USING org.apache.hadoop.zebra.pig.TableLoader(&lsquo;&rsquo;);
+</pre>
+<p></p>
+</div>
+<!-- END ZEBRA EXAMPLES-->    
+  
+ 
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2007-2011 <a href="http://www.apache.org/licenses/">The Apache Software Foundation.</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

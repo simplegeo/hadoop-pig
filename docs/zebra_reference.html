@@ -1,0 +1,829 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>Zebra Reference Guide</title>
+<link type="text/css" href="skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="skin/print.css" rel="stylesheet">
+<link type="text/css" href="skin/profile.css" rel="stylesheet">
+<script src="skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://www.apache.org/">Apache</a> &gt; <a href="http://hadoop.apache.org/">Hadoop</a> &gt; <a href="http://hadoop.apache.org/pig/">Pig</a><script src="skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<div class="grouplogo">
+<a href="http://hadoop.apache.org/"><img class="logoImage" alt="Hadoop" src="images/hadoop-logo.jpg" title="Apache Hadoop"></a>
+</div>
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogo">
+<a href="http://hadoop.apache.org/pig/"><img class="logoImage" alt="Pig" src="images/pig-logo.gif" title="A platform for analyzing large datasets."></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Search
+    +-->
+<div class="searchbox">
+<form action="http://www.google.com/search" method="get" class="roundtopsmall">
+<input value="" name="sitesearch" type="hidden"><input onFocus="getBlank (this, 'Search the site with google');" size="25" name="q" id="query" type="text" value="Search the site with google">&nbsp; 
+                    <input name="Search" value="Search" type="submit">
+</form>
+</div>
+<!--+
+    |end search
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="http://hadoop.apache.org/pig/">Project</a>
+</li>
+<li>
+<a class="unselected" href="http://wiki.apache.org/pig/">Wiki</a>
+</li>
+<li class="current">
+<a class="selected" href="index.html">Pig 0.8.0 Documentation</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_1.1', 'skin/')" id="menu_1.1Title" class="menutitle">Pig</div>
+<div id="menu_1.1" class="menuitemgroup">
+<div class="menuitem">
+<a href="index.html">Overview</a>
+</div>
+<div class="menuitem">
+<a href="setup.html">Setup</a>
+</div>
+<div class="menuitem">
+<a href="tutorial.html">Tutorial</a>
+</div>
+<div class="menuitem">
+<a href="piglatin_ref1.html">Pig Latin 1</a>
+</div>
+<div class="menuitem">
+<a href="piglatin_ref2.html">Pig Latin 2</a>
+</div>
+<div class="menuitem">
+<a href="cookbook.html">Cookbook</a>
+</div>
+<div class="menuitem">
+<a href="udf.html">UDFs</a>
+</div>
+<div class="menuitem">
+<a href="pigunit.html">PigUnit</a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_selected_1.2', 'skin/')" id="menu_selected_1.2Title" class="menutitle" style="background-image: url('skin/images/chapter_open.gif');">Zebra</div>
+<div id="menu_selected_1.2" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="zebra_overview.html">Zebra Overview </a>
+</div>
+<div class="menuitem">
+<a href="zebra_users.html">Zebra Users </a>
+</div>
+<div class="menupage">
+<div class="menupagetitle">Zebra Reference </div>
+</div>
+<div class="menuitem">
+<a href="zebra_mapreduce.html">Zebra MapReduce </a>
+</div>
+<div class="menuitem">
+<a href="zebra_pig.html">Zebra Pig </a>
+</div>
+<div class="menuitem">
+<a href="zebra_stream.html">Zebra Streaming </a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.3', 'skin/')" id="menu_1.3Title" class="menutitle">Miscellaneous</div>
+<div id="menu_1.3" class="menuitemgroup">
+<div class="menuitem">
+<a href="api/">API Docs</a>
+</div>
+<div class="menuitem">
+<a href="jdiff/changes.html">API Changes</a>
+</div>
+<div class="menuitem">
+<a href="http://wiki.apache.org/pig/">Wiki</a>
+</div>
+<div class="menuitem">
+<a href="http://wiki.apache.org/pig/FAQ">FAQ</a>
+</div>
+<div class="menuitem">
+<a href="http://hadoop.apache.org/pig/releases.html">Release Notes</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2"></div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<div title="Portable Document Format" class="pdflink">
+<a class="dida" href="zebra_reference.pdf"><img alt="PDF -icon" src="skin/images/pdfdoc.gif" class="skin"><br>
+        PDF</a>
+</div>
+<h1>Zebra Reference Guide</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#Zebra+Types">Zebra Types</a>
+</li>
+<li>
+<a href="#Store+Schema">Store Schema</a>
+<ul class="minitoc">
+<li>
+<a href="#Schemas+for+Simple+Data+Types">Schemas for Simple Data Types</a>
+</li>
+<li>
+<a href="#Schemas+for+Records">Schemas for Records</a>
+</li>
+<li>
+<a href="#Schemas+for+Collections">Schemas for Collections</a>
+</li>
+<li>
+<a href="#Schemas+for+Maps">Schemas for Maps</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#Storage+Specification">Storage Specification</a>
+<ul class="minitoc">
+<li>
+<a href="#Specification">Specification</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#Load+Schema">Load Schema</a>
+<ul class="minitoc">
+<li>
+<a href="#Schema">Schema</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+ 
+  <!-- ZEBRA TYPES-->
+   
+<a name="N10010"></a><a name="Zebra+Types"></a>
+<h2 class="h3">Zebra Types</h2>
+<div class="section">
+<p>Zebra supports simple types (int, long, float, double, string, bytes), complex types (record, collection, map) and Booleans.  </p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+		
+<tr>
+<th colspan="1" rowspan="1"> Zebra Type</th><th colspan="1" rowspan="1"> Description </th>
+</tr>
+		
+<tr>
+			
+<td colspan="1" rowspan="1">int</td>
+			<td colspan="1" rowspan="1">signed 32-bit integer</td>
+		
+</tr>
+		
+<tr>
+			
+<td colspan="1" rowspan="1">long</td>
+			<td colspan="1" rowspan="1">signed 64-bit integer</td>
+		
+</tr>
+		
+<tr>
+			
+<td colspan="1" rowspan="1">float</td>
+			<td colspan="1" rowspan="1">32-bit floating point</td>
+		
+</tr>	
+		
+<tr>
+			
+<td colspan="1" rowspan="1">double</td>
+			<td colspan="1" rowspan="1">64-bit floating point</td>
+		
+</tr>
+		
+<tr>
+			
+<td colspan="1" rowspan="1">string</td>
+			<td colspan="1" rowspan="1">character array (string) in Unicode UTF-8 format</td>
+		
+</tr>
+		
+<tr>
+			
+<td colspan="1" rowspan="1">bytes</td>
+			<td colspan="1" rowspan="1">byte array (blob)</td>
+		
+</tr>
+		
+<tr>
+			
+<td colspan="1" rowspan="1">record</td>
+			<td colspan="1" rowspan="1">An ordered set of fields. A field can be any Zebra type.</td>
+		
+</tr>
+		
+<tr>
+			
+<td colspan="1" rowspan="1">collection</td>
+			<td colspan="1" rowspan="1">A set of records. </td>
+		
+</tr>
+		
+<tr>
+			
+<td colspan="1" rowspan="1">map</td>
+			<td colspan="1" rowspan="1">A set of key/value pairs. The key is type string; the value can be any Zebra type.</td>
+		
+</tr>
+		
+<tr>
+			
+<td colspan="1" rowspan="1">bool</td>
+			<td colspan="1" rowspan="1">Boolean {0,1} false/true</td>
+		
+</tr>	
+    
+</table>
+<p></p>
+<p>Zebra type names are chosen to be as &ldquo;technology neutral&rdquo; as possible and are in resemblance to native types in modern programming languages.</p>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+		
+<tr>
+<th colspan="1" rowspan="1"> Zebra</th><th colspan="1" rowspan="1">Pig</th><th colspan="1" rowspan="1">Avro</th><th colspan="1" rowspan="1">SQL</th>
+</tr>
+		
+<tr>
+			
+<td colspan="1" rowspan="1">int</td>
+			<td colspan="1" rowspan="1">int</td>
+			<td colspan="1" rowspan="1">int</td>
+            <td colspan="1" rowspan="1">integer</td>
+		
+</tr>
+		
+<tr>
+			
+<td colspan="1" rowspan="1">long</td>
+			<td colspan="1" rowspan="1">long</td>
+			<td colspan="1" rowspan="1">long</td>
+			<td colspan="1" rowspan="1">long</td>
+		
+</tr>
+		
+<tr>
+            
+<td colspan="1" rowspan="1">float</td>
+            <td colspan="1" rowspan="1">float</td>
+            <td colspan="1" rowspan="1">float</td>
+            <td colspan="1" rowspan="1">float,real</td>
+		
+</tr>	
+		
+<tr>
+            
+<td colspan="1" rowspan="1">double</td>
+            <td colspan="1" rowspan="1">double</td>
+            <td colspan="1" rowspan="1">double</td>
+            <td colspan="1" rowspan="1">double precision</td>
+		
+</tr>
+		
+<tr>
+			
+<td colspan="1" rowspan="1">string</td>
+			<td colspan="1" rowspan="1">chararray</td>
+			<td colspan="1" rowspan="1">string</td>
+            <td colspan="1" rowspan="1">varchar</td>
+		
+</tr>
+		
+<tr>
+			
+<td colspan="1" rowspan="1">bytes</td>
+			<td colspan="1" rowspan="1">bytearray</td>
+			<td colspan="1" rowspan="1">bytes</td>
+            <td colspan="1" rowspan="1">raw</td>
+		
+</tr>
+		
+<tr>
+			
+<td colspan="1" rowspan="1">record</td>
+			<td colspan="1" rowspan="1">tuple</td>
+			<td colspan="1" rowspan="1">record</td>
+            <td colspan="1" rowspan="1">hash</td>
+		
+</tr>
+		
+<tr>
+			
+<td colspan="1" rowspan="1">collection</td>
+			<td colspan="1" rowspan="1">bag</td>
+			<td colspan="1" rowspan="1">array</td>
+            <td colspan="1" rowspan="1">list</td>
+		
+</tr>
+		
+<tr>
+			
+<td colspan="1" rowspan="1">map</td>
+			<td colspan="1" rowspan="1">map</td>
+			<td colspan="1" rowspan="1">map</td>
+            <td colspan="1" rowspan="1">hasp</td>
+		
+</tr>
+		
+<tr>
+			
+<td colspan="1" rowspan="1">bool</td>
+			<td colspan="1" rowspan="1">boolean</td>
+			<td colspan="1" rowspan="1">boolean</td>
+            <td colspan="1" rowspan="1">bool</td>
+		
+</tr>	
+    
+</table>
+</div>
+ <!-- END ZEBRA TYPES-->
+ 
+ 
+   <!-- STORE SCHEMA SPECIFICATION -->
+   
+<a name="N101AD"></a><a name="Store+Schema"></a>
+<h2 class="h3">Store Schema</h2>
+<div class="section">
+<p>Use the Zebra store schema to write or store Zebra columns and to specify column types. 
+The schema  supports data type compatibility and conversion between Zebra/Pig, Zebra/MapReduce, and Zebra/Streaming.
+(<em>In a future release, the schema will also support type compatibility between Zebra/Pig-SQL and will guide the underlying serialization formats provided by Avro for projection, filtering, and so on. </em>)
+</p>
+<p>The basic format for the store schema is shown here. 
+   The type name is optional; if not specified, the column defaults to type bytes.</p>
+<p>
+
+<span class="codefrag">
+column_name[:type_name] [, column_name[:type_name] ... ]   
+</span>
+
+</p>
+<a name="N101C4"></a><a name="Schemas+for+Simple+Data+Types"></a>
+<h3 class="h4">Schemas for Simple Data Types</h3>
+<p>Simple data types include int, long, float, double, string, and bytes. The following syntax also applies to Booleans.</p>
+<a name="N101CD"></a><a name="Syntax"></a>
+<h4>Syntax</h4>
+<p>field_alias[:type] [, field_alias[:type] &hellip;]</p>
+<a name="N101D7"></a><a name="Terms"></a>
+<h4>Terms</h4>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+		
+<tr>
+			
+<td colspan="1" rowspan="1">field_alias</td>
+			<td colspan="1" rowspan="1">The name assigned to the field column.</td>
+		
+</tr>
+	    
+<tr>
+			
+<td colspan="1" rowspan="1">:type</td>
+			<td colspan="1" rowspan="1">(Optional) The simple data type assigned to the field. <br>
+The alias and type are separated by a colon ( : ).<br>
+If the type is omitted, the field defaults to type bytes.
+</td>
+		
+</tr>
+	    
+<tr>
+			
+<td colspan="1" rowspan="1"> ,</td>
+			<td colspan="1" rowspan="1">Multiple fields are separated by commas.</td>
+		
+</tr>
+    
+</table>
+<a name="N1020C"></a><a name="Examples"></a>
+<h4>Examples</h4>
+<p>In this example the schema specifies names and types for 3 columns.</p>
+<pre class="code">
+ZebraSchema.createZebraSchema(JobContext, &ldquo;s1:string, f1:float, i1:int&rdquo;);
+</pre>
+<p>In this example the schema specifies names for 3 columns; all 3 columns default to type bytes.</p>
+<pre class="code">
+ZebraSchema.createZebraSchema(JobContext, &ldquo;f1, f2, f3&rdquo;);
+</pre>
+<a name="N10224"></a><a name="Schemas+for+Records"></a>
+<h3 class="h4">Schemas for Records</h3>
+<p>A record is an ordered set of fields. A field can be any Zebra type.</p>
+<a name="N1022D"></a><a name="Syntax-N1022D"></a>
+<h4>Syntax</h4>
+<p>record_alias:record (field_alias[:type]) [,(field_alias[:type]) &hellip;] )</p>
+<a name="N10237"></a><a name="Terms-N10237"></a>
+<h4>Terms</h4>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+		
+<tr>
+			
+<td colspan="1" rowspan="1">record_alias</td>
+			<td colspan="1" rowspan="1">The name assigned to the record column.</td>
+		
+</tr>
+	    
+<tr>
+			
+<td colspan="1" rowspan="1">:record</td>
+			<td colspan="1" rowspan="1">The record designator.</td>
+		
+</tr>
+	    
+<tr>
+			
+<td colspan="1" rowspan="1">(  )</td>
+			<td colspan="1" rowspan="1">The record notation, a set of parentheses.</td>
+		
+</tr>
+		
+<tr>
+			
+<td colspan="1" rowspan="1">field_alias</td>
+			<td colspan="1" rowspan="1">The name assigned to the field.</td>
+		
+</tr>
+	    
+<tr>
+			
+<td colspan="1" rowspan="1">:type</td>
+			<td colspan="1" rowspan="1">(Optional)  The type assigned to a field (can be any Zebra type).</td>
+		
+</tr>
+	    
+<tr>
+			
+<td colspan="1" rowspan="1">,</td>
+			<td colspan="1" rowspan="1">Multiple fields are separated by commas.</td>
+		
+</tr>		
+    
+</table>
+<a name="N1028F"></a><a name="Examples-N1028F"></a>
+<h4>Examples</h4>
+<p>In this example the schema specifies a record with two fields.  </p>
+<pre class="code">
+ZebraSchema.createZebraSchema(JobContext, &ldquo;r1:record(f1:int,f2:long)&rdquo;);
+</pre>
+<p>In this example the schema specifies a record with two fields. Note that f2 will default to type bytes.</p>
+<pre class="code">
+ZebraSchema.createZebraSchema(JobContext, &ldquo;r1:record(r2:record(f1:int,f2)&rdquo;);
+</pre>
+<a name="N102A7"></a><a name="Schemas+for+Collections"></a>
+<h3 class="h4">Schemas for Collections</h3>
+<p>A collection is a set of records.</p>
+<a name="N102B0"></a><a name="Syntax-N102B0"></a>
+<h4>Syntax</h4>
+<p>collection_alias:collection ([record_alias:]record(...))</p>
+<a name="N102BA"></a><a name="Terms-N102BA"></a>
+<h4>Terms</h4>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+		
+<tr>
+			
+<td colspan="1" rowspan="1">collection_alias</td>
+			<td colspan="1" rowspan="1">The name assigned to the collection.</td>
+		
+</tr>
+	    
+<tr>
+			
+<td colspan="1" rowspan="1">:collection</td>
+			<td colspan="1" rowspan="1">The collection designator.</td>
+		
+</tr>
+	    
+<tr>
+			
+<td colspan="1" rowspan="1">(  )</td>
+			<td colspan="1" rowspan="1">The collection notation, a set of parentheses.</td>
+		
+</tr>
+		
+<tr>
+			
+<td colspan="1" rowspan="1">record_alias</td>
+			<td colspan="1" rowspan="1">The name assigned to the record.</td>
+		
+</tr>
+	    
+<tr>
+			
+<td colspan="1" rowspan="1"> record</td>
+			
+			<td colspan="1" rowspan="1"> The record designator. The <a href="zebra_reference.html#Schemas+for+Records">record</a>   
+			can be specified with or without the record alias:
+                 <ul>
+                      
+<li>c1:collection(r1:record(f1:int,f2:long));</li>
+                      
+<li>c1:collection(record(f1:int,f2:long));</li>
+                 
+</ul>
+            
+</td>
+		
+</tr>		
+    
+</table>
+<a name="N10312"></a><a name="Examples-N10312"></a>
+<h4>Examples</h4>
+<p>In this example the schema specifies a collection of records, each consisting of two fields.</p>
+<pre class="code">
+ZebraSchema.createZebraSchema(jobContext, &ldquo;c1:collection(r1:record(f1:int,f2:long))&rdquo;);
+</pre>
+<a name="N10323"></a><a name="Schemas+for+Maps"></a>
+<h3 class="h4">Schemas for Maps</h3>
+<p>A map is a set of key/value pairs.</p>
+<a name="N1032C"></a><a name="Syntax-N1032C"></a>
+<h4>Syntax</h4>
+<p>map_alias:map (type)</p>
+<a name="N10336"></a><a name="Terms-N10336"></a>
+<h4>Terms</h4>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+		
+<tr>
+			
+<td colspan="1" rowspan="1">map_alias</td>
+			<td colspan="1" rowspan="1">The name assigned to the map column.</td>
+		
+</tr>
+	    
+<tr>
+			
+<td colspan="1" rowspan="1">:map</td>
+			<td colspan="1" rowspan="1">The map designator.</td>
+		
+</tr>
+	    
+<tr>
+			
+<td colspan="1" rowspan="1">(  )</td>
+			<td colspan="1" rowspan="1">The map notation, a set of parentheses.</td>
+		
+</tr>
+	    
+<tr>
+			
+<td colspan="1" rowspan="1"> type</td>
+			<td colspan="1" rowspan="1">The type assigned to the map&rsquo;s value (can be any Zebra type). <br>
+Note that the map&rsquo;s key is always type string and is not specified.
+</td>
+		
+</tr>
+    
+</table>
+<a name="N10376"></a><a name="Examples-N10376"></a>
+<h4>Examples</h4>
+<p>In this example the schema specifies a map with value of type string.</p>
+<pre class="code">
+ZebraSchema.createZebraSchema(jJobContext, &ldquo;m1:map(string)&rdquo;);
+</pre>
+<p>In this example the schema specifies a map with value of type map (with a value of type int).</p>
+<pre class="code">
+ZebraSchema.createZebraSchema(JobContext, &ldquo;m2:map(map(int))&rdquo;);
+</pre>
+</div>  
+   <!-- END STORE SCHEMA SPECIFICATION -->
+   
+   
+   <!-- STORAGE SPECIFICATION -->
+   
+<a name="N10391"></a><a name="Storage+Specification"></a>
+<h2 class="h3">Storage Specification</h2>
+<div class="section">
+<p> Use the Zebra storage specification to define Zebra column groups. The storage specification, when combined with a STORE statement, describes the physical structure of a Zebra table. Suppose we have the following statement:
+ </p>
+<pre class="code">
+STORE A INTO '$PATH/mytable' USING org.apache.hadoop.zebra.pig.TableStorer('[a1, a2] AS cg1; [a3, a4, a5] AS cg2');
+</pre>
+<p>The statement describes a table that has two column groups; the first column group has two columns, the second column group has three columns. The statement can be interpreted as follows:</p>
+<ul>
+		
+<li>$PATH/mytable - the table, a file path to a directory named mytable</li>
+		
+<li>$PATH/mytable/cg1 - the first column group, a subdirectory named cg1 under directory mytable </li>
+		
+<li>$PATH/mytable/cg1/part00001 - a file consisting, conceptually, of columns a1 and a2</li>
+	    
+<li>$PATH/mytable/cg2 - the second column group, a subdirectory named cg2 under directory mytable </li>
+		
+<li>$PATH/mytable/cg2/part00001 - a file consisting, conceptually, of columns a3, a4, and a5</li>
+ 
+</ul>
+<a name="N103B3"></a><a name="Specification"></a>
+<h3 class="h4">Specification</h3>
+<p>  The basic format for the Zebra storage specification is shown here. 
+ For this specification, note that the straight brackets <strong> [ ]</strong> designate a column group 
+ and the curly brackets { } designate an optional syntax component.</p>
+<a name="N103BF"></a><a name="Syntax-N103BF"></a>
+<h4>Syntax</h4>
+<p>
+
+<strong> [</strong>column_name {, column_name ...} <strong> ]</strong> {AS column_group_name} {COMPRESS BY compressor_name} {SERIALIZE BY serializer_name} <br>
+{; <strong> [</strong>column_name {, column_name ...} <strong> ]</strong> {AS column_group_name} {COMPRESS BY compressor_name} {SERIALIZE BY serializer_name} ... }
+</p>
+<a name="N103D7"></a><a name="Terms-N103D7"></a>
+<h4>Terms</h4>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+		
+<tr>
+			
+<td colspan="1" rowspan="1"><strong>[  ]</strong></td>
+			<td colspan="1" rowspan="1">Brackets designate a column group. Multiple column groups are separated by semi-colons.</td>
+		
+</tr>
+		
+	    
+<tr>
+			
+<td colspan="1" rowspan="1">AS column_group_name </td>
+			<td colspan="1" rowspan="1">Optional. The name of the column group. Column group names are unique within one table and are case sensitive: c1 and C1 are different. Column group names are used as the physical column group directory path names.
+			<br>If specified, the AS clause must immediately follow the column group [ ]. 
+			<br>If not specified, Zebra will assign unique default names for the table: CG0, CG1, CG2 ... (If CGx is specified by the programmer, then it cannot be used by Zebra.) 
+			</td>
+		
+</tr>
+	    
+<tr>
+			
+<td colspan="1" rowspan="1">COMPRESS BY compressor_name </td>
+			<td colspan="1" rowspan="1">Optional. Valid values for compressor_name include gz (default) and lzo. <br>If not specified, gz is used.</td>
+		
+</tr>		
+
+	    
+<tr>
+			
+<td colspan="1" rowspan="1">SERIALIZE BY serializer_name</td>
+			<td colspan="1" rowspan="1">Optional. Valid values for serializer_name include pig (default). (<em>In a future release, Avro will be available.</em>) <br>If not specified, pig is used.</td>
+		
+</tr>	
+	    
+<tr>
+			
+<td colspan="1" rowspan="1">column_name</td>
+			<td colspan="1" rowspan="1">The name of one or more columns that form the column group.</td>
+		
+</tr>	
+    
+</table>
+<a name="N1042E"></a><a name="Examples-N1042E"></a>
+<h4>Examples</h4>
+<p>In this example, one column group is specified; the two statements are equivalent.</p>
+<pre class="code">
+STORE A INTO '$PATH' USING org.apache.hadoop.zebra.pig.TableStorer('[c1]');
+
+STORE A INTO '$PATH' USING org.apache.hadoop.zebra.pig.TableStorer('[c1] AS CG0 COMPRESS BY gz SERIALIZE BY pig;');
+</pre>
+<p>In this example, two column groups are specified. The first column group, C1, has two columns. The second column group, C2, has three columns.</p>
+<pre class="code">
+STORE A INTO '$PATH' USING org.apache.hadoop.zebra.pig.TableStorer('[a1, a2] AS C1; [a3, a4, a5] AS C2');
+</pre>
+</div>
+   <!-- END STORAGE SPECIFICATION -->
+   
+   
+   <!-- LOAD SCHEMA SPECIFICATION -->
+   
+<a name="N10449"></a><a name="Load+Schema"></a>
+<h2 class="h3">Load Schema</h2>
+<div class="section">
+<p>Use the Zebra load schema to load or read table columns.</p>
+<a name="N10452"></a><a name="Schema"></a>
+<h3 class="h4">Schema</h3>
+<p>The basic format for the Zebra load (read) schema is shown here. The column name can be any valid Zebra type.  
+   If no columns are specified, the entire Zebra table is loaded.</p>
+<p>
+
+<span class="codefrag">
+column_name [, column_name ... ]   
+</span>
+   
+</p>
+<a name="N10461"></a><a name="Terms-N10461"></a>
+<h4>Terms</h4>
+<table class="ForrestTable" cellspacing="1" cellpadding="4">
+		
+<tr>
+			
+<td colspan="1" rowspan="1">column_name</td>
+			<td colspan="1" rowspan="1">The column name. Multiple columns are separated by commas.</td>
+		
+</tr>
+     
+</table>
+<a name="N10478"></a><a name="Example"></a>
+<h4>Example</h4>
+<p>Three Pig examples are shown here.</p>
+<pre class="code">
+-- All columns are loaded
+A = LOAD '$PATH/tbl1' USING org.apache.hadoop.pig.zebra.pig.TableLoader();
+   
+-- Two columns are projected
+B = LOAD '$PATH/tbl2' USING org.apache.hadoop.zebra.pig.TableLoader('c1,c2');
+   
+-- Three columns are projected: a simple field, a map, and a record
+C = LOAD '$PATH/tbl3' USING org.apache.hadoop.zebra.pig.TableLoader('c1,c2#{key1},col4.{f1}')
+</pre>
+</div>
+   <!-- END LOAD SCHEMA SPECIFICATION -->   
+    
+ 
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2007-2011 <a href="http://www.apache.org/licenses/">The Apache Software Foundation.</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

@@ -1,0 +1,659 @@
+From 221c28f846b0a890184c437833eb53ddc3a0b50e Mon Sep 17 00:00:00 2001
+From: Andrew Bayer <andrew.bayer@gmail.com>
+Date: Thu, 27 Jan 2011 16:04:13 -0800
+Subject: [PATCH 3/3] CLOUDERA-BUILD. Changes to support CDH Mavenization.
+
+---
+ build.xml                                          |   20 +-
+ cloudera-pom.xml                                   |  228 ++++++++++++++++++++
+ cloudera/do-release-build                          |   13 +-
+ cloudera/maven-packaging/pig/pom.xml               |  106 +++++++++
+ cloudera/maven-packaging/pom.xml                   |   74 +++++++
+ cloudera/maven-packaging/templates/build.template  |    6 +
+ .../maven-packaging/templates/libraries.template   |   51 +++++
+ ivy.xml                                            |    4 +-
+ ivy/ivysettings.xml                                |   23 ++-
+ ivy/libraries.properties                           |    5 +-
+ 10 files changed, 506 insertions(+), 24 deletions(-)
+ create mode 100644 cloudera-pom.xml
+ create mode 100644 cloudera/maven-packaging/pig/pom.xml
+ create mode 100644 cloudera/maven-packaging/pom.xml
+ create mode 100644 cloudera/maven-packaging/templates/build.template
+ create mode 100644 cloudera/maven-packaging/templates/libraries.template
+
+diff --git a/build.xml b/build.xml
+index 2b8bc57..e8f6477 100644
+--- a/build.xml
++++ b/build.xml
+@@ -822,14 +822,9 @@
+           uri="urn:maven-artifact-ant"
+           classpathref="mvn-ant-task.classpath"/>
+     </target>
+-    <target name="mvn-install" depends="mvn-taskdef,jar, set-version, source-jar, javadoc-jar"
++    <target name="mvn-install"
+          description="To install pig to local filesystem's m2 cache">
+-         <artifact:pom file="${pig.pom}" id="pig"/>
+-          <artifact:install file="${pig-core.jar}">
+-               <pom refid="pig"/>
+-           <attach file="${output.jarfile.sources}" classifier="sources" />
+-           <attach file="${output.jarfile.javadoc}" classifier="javadoc" />
+-          </artifact:install>
++      <echo>To install Cloudera pig jar into Maven cache, run "mvn -f cloudera-pom.xml install" from this directory.</echo>
+     </target>
+     <target name="mvn-deploy" depends="mvn-taskdef,jar,source-jar, javadoc-jar, set-version, signanddeploy, simpledeploy"
+          description="To deploy pig jar to apache snapshot's repository">
+@@ -1095,7 +1090,16 @@
+         </condition>
+      </target>
+ 
+-     <target name="ivy-download" description="To download ivy" unless="offline">
++    <!-- Initializes ivy/libraries.properties and build.properties with CDH versions -->
++    <target  name="init-cdh" unless="cdh.maven">
++      <exec  executable="mvn" dir="${basedir}" failonerror="true">
++        <arg value="-f" />
++        <arg value="cloudera-pom.xml" />
++        <arg value="process-resources"/>
++      </exec>
++    </target>
++
++     <target name="ivy-download" depends="init-cdh" description="To download ivy" unless="offline">
+         <get src="${ivy_repo_url}" dest="${ivy.jar}" usetimestamp="true"/>
+      </target>
+ 
+diff --git a/cloudera-pom.xml b/cloudera-pom.xml
+new file mode 100644
+index 0000000..7c9d739
+--- /dev/null
++++ b/cloudera-pom.xml
+@@ -0,0 +1,228 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!--
++   Licensed to the Apache Software Foundation (ASF) under one or more
++   contributor license agreements.  See the NOTICE file distributed with
++   this work for additional information regarding copyright ownership.
++   The ASF licenses this file to You under the Apache License, Version 2.0
++   (the "License"); you may not use this file except in compliance with
++   the License.  You may obtain a copy of the License at
++
++       http://www.apache.org/licenses/LICENSE-2.0
++
++   Unless required by applicable law or agreed to in writing, software
++   distributed under the License is distributed on an "AS IS" BASIS,
++   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++   See the License for the specific language governing permissions and
++   limitations under the License.
++-->
++<project>
++  <modelVersion>4.0.0</modelVersion>
++  
++  <parent>
++    <groupId>com.cloudera.cdh</groupId>
++    <artifactId>pig-root</artifactId>
++    <version>3.0-beta-4-SNAPSHOT</version>
++  </parent>
++  
++  <groupId>com.cloudera.cdh</groupId>
++  <artifactId>pig-ant</artifactId>
++  <version>3.0-beta-4-SNAPSHOT</version>
++  <packaging>pom</packaging>
++  
++  <scm>
++    <connection>scm:git:git@git.sf.cloudera.com:pig.git</connection>
++    <url>git@git.sf.cloudera.com:pig.git</url>
++  </scm>
++  
++  <description>Pig Ant</description>
++  <name>Pig ant</name>
++  
++  <licenses>
++    <license>
++      <name>The Apache Software License, Version 2.0</name>
++      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
++    </license>
++  </licenses>
++  
++  <organization>
++    <name>Cloudera</name>
++    <url>http://www.cloudera.com</url>
++  </organization>
++  
++  <profiles>
++    <!--To allow standalone project to fetch CDH artifacts -->
++    <!--Activate by default doing a negation of negation   -->
++    <!-- this trick allows CDH root to switch it off       -->
++    <profile>
++      <id>cdh.repos</id>
++      <activation>
++        <activeByDefault>false</activeByDefault>
++        <property>
++          <name>use.cdh.repos</name>
++          <value>!false</value>
++        </property>
++      </activation>
++      <repositories>
++        <repository>
++          <id>cdh.releases.repo</id>
++          <url>https://repository.cloudera.com/content/repositories/releases</url>
++          <name>CDH Releases Repository</name>
++          <snapshots>
++            <enabled>false</enabled>
++          </snapshots>
++        </repository>
++        <repository>
++          <id>cdh.snapshots.repo</id>
++          <url>https://repository.cloudera.com/content/repositories/snapshots</url>
++          <name>CDH Snapshots Repository</name>
++          <snapshots>
++            <enabled>true</enabled>
++          </snapshots>
++        </repository>
++      </repositories>
++    </profile>
++    <!-- Similar logic to allow us to skip compilation/tests when run -->
++    <!-- via do-release-build or packaging scripts, since we're already -->
++    <!-- compiling via direct ant calls. -->
++    <profile>
++      <id>non.release.build</id>
++      <activation>
++        <activeByDefault>false</activeByDefault>
++        <property>
++          <name>not.cdh.release.build</name>
++          <value>!false</value>
++        </property>
++      </activation>
++      <build>
++        <plugins>
++          <plugin>
++            <groupId>org.apache.maven.plugins</groupId>
++            <artifactId>maven-antrun-plugin</artifactId>
++            <inherited>false</inherited>
++            <executions>
++              <execution>
++                <id>clean</id>
++                <configuration>
++                  <target>
++                    <exec executable="${ant.cmd}" dir="${basedir}" failonerror="true">
++                      <arg value="clean"/>
++                      <arg value="-Dcdh.maven=true"/>
++                      <arg value="-Divy.cache.dir=${ivy.cache.dir}"/>
++                    </exec>
++                  </target>
++                </configuration>
++                <goals>
++                  <goal>run</goal>
++                </goals>
++                <phase>clean</phase>
++              </execution>
++              <execution>
++                <id>compile</id>
++                <configuration>
++                  <target>
++                    <exec executable="${ant.cmd}" dir="${basedir}" failonerror="true">
++                      <arg value="jar"/>
++                      <arg value="buildJar"/>
++                      <arg value="-Dcdh.maven=true"/>
++                      <arg value="-Dreactor.repo=file://${maven.repo.local}"/>
++                      <arg value="-Divy.cache.dir=${ivy.cache.dir}"/>
++                    </exec>
++                  </target>
++                </configuration>
++                <goals>
++                  <goal>run</goal>
++                </goals>
++                <phase>compile</phase>
++              </execution>
++              <execution>
++                <id>test</id>
++                <configuration>
++                  <target unless="${skipTests}">
++                    <exec executable="${ant.cmd}" dir="${basedir}" failonerror="true">
++                      <arg value="test"/>
++                      <arg value="-Dcdh.maven=true"/>
++                      <arg value="-Dreactor.repo=file://${maven.repo.local}"/>
++                      <arg value="-Divy.cache.dir=${ivy.cache.dir}"/>
++                    </exec>
++                  </target>
++                </configuration>
++                <goals>
++                  <goal>run</goal>
++                </goals>
++                <phase>test</phase>
++              </execution>
++            </executions>
++          </plugin>
++        </plugins>
++      </build>
++    </profile>
++    <!-- Profile that's only activated when we're calling as a release build, to run -->
++    <!-- with variables set *and* tar target -->
++    <profile>
++      <id>cdh.release.build</id>
++      <activation>
++        <activeByDefault>false</activeByDefault>
++        <property>
++          <name>not.cdh.release.build</name>
++          <value>false</value>
++        </property>
++      </activation>
++      <build>
++        <plugins>
++          <plugin>
++            <groupId>org.apache.maven.plugins</groupId>
++            <artifactId>maven-antrun-plugin</artifactId>
++            <inherited>false</inherited>
++            <executions>
++              <execution>
++                <id>tar</id>
++                <configuration>
++                  <target>
++                    <exec executable="${ant.cmd}" dir="${basedir}" failonerror="true">
++                      <arg value="tar"/>
++                      <arg value="-Djava5.home=${java5.home}"/>
++                      <arg value="-Dforrest.home=${forrest.home}"/>
++                      <arg value="-Dreactor.repo=file://${maven.repo.local}"/>
++                      <arg value="-Divy.cache.dir=${ivy.cache.dir}"/>
++                      <arg value="-propertyfile" />
++                      <arg value="cloudera/build.properties"/>
++                    </exec>
++                  </target>
++                </configuration>
++                <goals>
++                  <goal>run</goal>
++                </goals>
++                <phase>compile</phase>
++              </execution>
++            </executions>
++          </plugin>
++        </plugins>
++      </build>
++    </profile>
++  
++  </profiles>
++  
++  <build>
++    <plugins>
++      <plugin>
++        <groupId>com.cloudera.kitchen</groupId>
++        <artifactId>maven-deps-to-props-plugin</artifactId>
++        <executions>
++          <execution>
++            <id>build.properties</id>
++            <configuration>
++              <templateFile>${basedir}/cloudera/maven-packaging/templates/build.template</templateFile>
++              <targetFile>${basedir}/build.properties</targetFile>
++            </configuration>
++            <goals>
++              <goal>generate</goal>
++            </goals>
++            <phase>process-resources</phase>
++          </execution>
++        </executions>
++      </plugin>
++      
++    </plugins>
++  </build>
++    
++</project>
+diff --git a/cloudera/do-release-build b/cloudera/do-release-build
+index 3aad0ab..91d0178 100755
+--- a/cloudera/do-release-build
++++ b/cloudera/do-release-build
+@@ -32,11 +32,8 @@ fi
+ BIN_DIR=$(readlink -f $(dirname $0))
+ RELEASE_DIR=$BIN_DIR/..
+ 
+-cd $RELEASE_DIR
+-
+-JAVA_HOME=$JAVA_HOME \
+-  ant \
+-  -Djava5.home=$JAVA5_HOME \
+-  -Dforrest.home=$FORREST_HOME \
+-  -propertyfile cloudera/build.properties \
+-  tar
++# Change to cloudera/maven directory, compile, install
++# (and if called from CDH nightly build, deploy) artifacts into Maven repository
++cd $BIN_DIR/maven-packaging
++mvn -Dnot.cdh.release.build=false -Djava5.home=$JAVA5_HOME -Dforrest.home=$FORREST_HOME install $DO_MAVEN_DEPLOY
++
+diff --git a/cloudera/maven-packaging/pig/pom.xml b/cloudera/maven-packaging/pig/pom.xml
+new file mode 100644
+index 0000000..a0e8938
+--- /dev/null
++++ b/cloudera/maven-packaging/pig/pom.xml
+@@ -0,0 +1,106 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!--
++   Licensed to the Apache Software Foundation (ASF) under one or more
++   contributor license agreements.  See the NOTICE file distributed with
++   this work for additional information regarding copyright ownership.
++   The ASF licenses this file to You under the Apache License, Version 2.0
++   (the "License"); you may not use this file except in compliance with
++   the License.  You may obtain a copy of the License at
++
++       http://www.apache.org/licenses/LICENSE-2.0
++
++   Unless required by applicable law or agreed to in writing, software
++   distributed under the License is distributed on an "AS IS" BASIS,
++   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++   See the License for the specific language governing permissions and
++   limitations under the License.
++-->
++<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
++         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
++
++  <modelVersion>4.0.0</modelVersion>
++  
++  <parent>
++    <groupId>com.cloudera.cdh</groupId>
++    <artifactId>pig-root</artifactId>
++    <version>3.0-beta-4-SNAPSHOT</version>
++  </parent>
++  
++  <groupId>org.apache.pig</groupId>
++  <artifactId>pig</artifactId>
++  <version>0.8.0-CDH3B4-SNAPSHOT</version>
++  <packaging>jar</packaging>
++  
++  <dependencies>
++    <dependency>
++      <groupId>com.cloudera.cdh</groupId>
++      <artifactId>pig-ant</artifactId>
++      <type>pom</type>
++    </dependency>
++    
++    <dependency>
++      <groupId>com.jcraft</groupId>
++      <artifactId>jsch</artifactId>
++      <exclusions>
++        <exclusion>
++          <groupId>com.jcraft</groupId>
++          <artifactId>zlib</artifactId>
++        </exclusion>
++      </exclusions>
++    </dependency>
++    <dependency>
++      <groupId>jline</groupId>
++      <artifactId>jline</artifactId>
++    </dependency>
++    <dependency>
++      <groupId>org.apache.hadoop</groupId>
++      <artifactId>hadoop-core</artifactId>
++      <scope>provided</scope>
++    </dependency>
++    <dependency>
++      <groupId>joda-time</groupId>
++      <artifactId>joda-time</artifactId>
++    </dependency>
++    <dependency>
++      <groupId>commons-lang</groupId>
++      <artifactId>commons-lang</artifactId>
++    </dependency>
++    <dependency>
++      <groupId>com.google.guava</groupId>
++      <artifactId>guava</artifactId>
++    </dependency>
++    <dependency>
++      <groupId>org.python</groupId>
++      <artifactId>jython</artifactId>
++    </dependency>
++    
++  </dependencies>
++  
++  <build>
++    <plugins>
++      <plugin>
++        <groupId>org.apache.maven.plugins</groupId>
++        <artifactId>maven-antrun-plugin</artifactId>
++        <inherited>false</inherited>
++        <executions>
++          <execution>
++            <id>compile</id>
++            <configuration>
++              <target>
++                <copy file="${basedir}/../../../build/pig-${project.version}-core.jar"
++                      tofile="${basedir}/target/${project.artifactId}-${project.version}.jar"/>
++                <unzip src="${basedir}/target/${project.artifactId}-${project.version}.jar"
++                       dest="${basedir}/target/classes"/>
++              </target>
++            </configuration>
++            <goals>
++              <goal>run</goal>
++            </goals>
++            <phase>compile</phase>
++          </execution>
++        </executions>
++      </plugin>
++    </plugins>
++  </build>
++  
++</project>
+diff --git a/cloudera/maven-packaging/pom.xml b/cloudera/maven-packaging/pom.xml
+new file mode 100644
+index 0000000..59327b2
+--- /dev/null
++++ b/cloudera/maven-packaging/pom.xml
+@@ -0,0 +1,74 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!--
++   Licensed to the Apache Software Foundation (ASF) under one or more
++   contributor license agreements.  See the NOTICE file distributed with
++   this work for additional information regarding copyright ownership.
++   The ASF licenses this file to You under the Apache License, Version 2.0
++   (the "License"); you may not use this file except in compliance with
++   the License.  You may obtain a copy of the License at
++
++       http://www.apache.org/licenses/LICENSE-2.0
++
++   Unless required by applicable law or agreed to in writing, software
++   distributed under the License is distributed on an "AS IS" BASIS,
++   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++   See the License for the specific language governing permissions and
++   limitations under the License.
++-->
++<project>
++  <modelVersion>4.0.0</modelVersion>
++  
++  <parent>
++    <groupId>com.cloudera.cdh</groupId>
++    <artifactId>cdh-root</artifactId>
++    <version>3.0-beta-4-SNAPSHOT</version>
++  </parent>
++  
++  <groupId>com.cloudera.cdh</groupId>
++  <artifactId>pig-root</artifactId>
++  <version>3.0-beta-4-SNAPSHOT</version>
++  <packaging>pom</packaging>
++  
++  <description>Pig root</description>
++  <name>CDH Pig root</name>
++  
++  <licenses>
++    <license>
++      <name>The Apache Software License, Version 2.0</name>
++      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
++    </license>
++  </licenses>
++  
++  <organization>
++    <name>Cloudera</name>
++    <url>http://www.cloudera.com</url>
++  </organization>
++  
++  <modules>
++    <module>../../cloudera-pom.xml</module>
++    <module>pig</module>
++  </modules>
++  
++  <dependencies>
++    <dependency>
++      <groupId>com.cloudera.cdh</groupId>
++      <artifactId>hadoop-root</artifactId>
++      <type>pom</type>
++    </dependency>
++  </dependencies>
++  <build>
++    <plugins>
++      <plugin>
++        <groupId>org.apache.maven.plugins</groupId>
++        <artifactId>maven-jar-plugin</artifactId>
++        <configuration>
++          <archive>
++            <manifestFile>target/classes/META-INF/MANIFEST.MF</manifestFile>
++          </archive>
++        </configuration>
++      </plugin>
++    </plugins>
++  </build>
++    
++</project>
++
+diff --git a/cloudera/maven-packaging/templates/build.template b/cloudera/maven-packaging/templates/build.template
+new file mode 100644
+index 0000000..9633513
+--- /dev/null
++++ b/cloudera/maven-packaging/templates/build.template
+@@ -0,0 +1,6 @@
++pig.version=org.apache.pig:pig.version
++version=org.apache.pig:pig.version
++reactor.repo=https://repository.cloudera.com/content/repositories/snapshots
++hadoop-core.version=org.apache.hadoop:hadoop-core.version
++hadoop-test.version=org.apache.hadoop:hadoop-test.version
++hbase.version=org.apache.hbase:hbase.version
+diff --git a/cloudera/maven-packaging/templates/libraries.template b/cloudera/maven-packaging/templates/libraries.template
+new file mode 100644
+index 0000000..0d958d2
+--- /dev/null
++++ b/cloudera/maven-packaging/templates/libraries.template
+@@ -0,0 +1,51 @@
++#   Licensed under the Apache License, Version 2.0 (the "License");
++#   you may not use this file except in compliance with the License.
++#   You may obtain a copy of the License at
++#
++#       http://www.apache.org/licenses/LICENSE-2.0
++#
++#   Unless required by applicable law or agreed to in writing, software
++#   distributed under the License is distributed on an "AS IS" BASIS,
++#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++#   See the License for the specific language governing permissions and
++#   limitations under the License.
++
++#This properties file lists the versions of the various artifacts used by pig and components.
++#It drives ivy and the generation of a maven POM
++
++#These are the versions of our dependencies (in alphabetical order)
++#??? apacheant.version=1.7.1
++antlr.version=antlr:antlr.version
++
++commons-beanutils.version=commons-beanutils:commons-beanutils.version
++commons-cli.version=commons-cli:commons-cli.version
++commons-el.version=commons-el:commons-el.version
++commons-lang.version=commons-lang:commons-lang.version
++commons-logging.version=commons-logging:commons-logging.version
++checkstyle.version=checkstyle:checkstyle.version
++
++ivy.version=org.apache.ivy:ivy.version
++hadoop-core.version=org.apache.hadoop:hadoop-core.version
++hadoop-test.version=org.apache.hadoop:hadoop-test.version
++
++javacc.version=net.java.dev.javacc:javacc.version
++jetty-util.version=org.mortbay.jetty:jetty-util.version
++jline.version=jline:jline.version
++jsch.version=com.jcraft:jsch.version
++junit.version=junit:junit.version
++jdiff.version=jdiff:jdiff.version
++
++log4j.version=log4j:log4j.version
++
++slf4j-api.version=org.slf4j:slf4j-api.version
++slf4j-log4j12.version=org.slf4j:slf4j-log4j12.version
++
++rats-lib.version=com.google.code.p.arat:rat-lib.version
++
++xerces.version=xerces:xerces.version
++
++jackson.version=org.codehaus.jackson:jackson-core-asl.version
++
++joda-time.version=joda-time:joda-time.version
++guava.version=com.google.guava:guava.version
++jython.version=org.python:jython.version
+diff --git a/ivy.xml b/ivy.xml
+index cecc70c..187bafb 100644
+--- a/ivy.xml
++++ b/ivy.xml
+@@ -52,9 +52,9 @@
+       conf="compile->master"/>
+     <dependency org="log4j" name="log4j" rev="${log4j.version}"
+       conf="compile->master"/>
+-    <dependency org="com.cloudera.hadoop" name="hadoop-core" rev="${hadoop-core.version}"
++    <dependency org="org.apache.hadoop" name="hadoop-core" rev="${hadoop-core.version}"
+       conf="compile->default;test->default" />
+-    <dependency org="com.cloudera.hadoop" name="hadoop-test" rev="${hadoop-test.version}"
++    <dependency org="org.apache.hadoop" name="hadoop-test" rev="${hadoop-test.version}"
+       conf="compile->default;test->default" />
+     <dependency org="org.mortbay.jetty" name="jetty-util" rev="${jetty-util.version}"
+       conf="compile->master"/>
+diff --git a/ivy/ivysettings.xml b/ivy/ivysettings.xml
+index 2d076dc..0acf982 100644
+--- a/ivy/ivysettings.xml
++++ b/ivy/ivysettings.xml
+@@ -36,9 +36,19 @@
+   <include url="${ivy.default.conf.dir}/ivyconf-local.xml"/>
+   <settings defaultResolver="default"/>
+   <resolvers>
++      <!-- CDH build repo, the pattern attribute handles SNAPSHOT artifacts -->
++      <ibiblio name="reactor-repo" root="${reactor.repo}"
++          m2compatible="true"
++          checkmodified="true"/>
++
+     <ibiblio name="maven2" root="${repo.maven.org}" pattern="${maven2.pattern.ext}" m2compatible="true"/>
+-    <ibiblio name="cloudera-releases" m2compatible="true" root="https://repository.cloudera.com/content/repositories/releases" checkmodified="true"/>
++    <ibiblio name="apache-snapshot" root="${snapshot.apache.org}" pattern="${maven2.pattern.ext}" m2compatible="true"/>
++    <ibiblio name="cloudera-releases" m2compatible="true"
++      root="https://repository.cloudera.com/content/repositories/releases" checkmodified="true"/>
++    <ibiblio name="cloudera-snapshots" m2compatible="true"
++      root="https://repository.cloudera.com/content/repositories/snapshots" checkmodified="true"/>
+     <chain name="default" dual="true">
++      <resolver ref="reactor-repo"/>
+       <resolver ref="local"/>
+       <resolver ref="maven2"/>
+       <resolver ref="cloudera-releases"/>
+@@ -49,9 +59,18 @@
+     <chain name="external">
+       <resolver ref="maven2"/>
+     </chain>
++    <chain name="external-and-snapshots">
++      <resolver ref="maven2"/>
++      <resolver ref="apache-snapshot"/>
++    </chain>
++    <chain name="cloudera">
++      <resolver ref="cloudera-releases" />
++      <resolver ref="cloudera-snapshots" />
++    </chain>
+   </resolvers>
+   <modules>
+     <module organisation="org.apache.pig" name=".*" resolver="internal"/>
+-    <module organisation="com.cloudera.hadoop" name=".*" resolver="cloudera-releases" />
++    <module organisation="com.cloudera.*" name=".*" resolver="cloudera" />
++    <module organisation="org.apache.hadoop" name=".*" resolver="cloudera" />
+   </modules>
+ </ivysettings>
+diff --git a/ivy/libraries.properties b/ivy/libraries.properties
+index 313d54d..925ef98 100644
+--- a/ivy/libraries.properties
++++ b/ivy/libraries.properties
+@@ -26,11 +26,8 @@ commons-lang.version=2.4
+ checkstyle.version=4.2
+ ivy.version=2.2.0-rc1
+ guava.version=r06
+-hadoop-core.version=0.20.2-737
+-hadoop-test.version=0.20.2-737
+-hbase.version=0.20.6
+ hsqldb.version=1.8.0.10
+-jackson.version=1.0.1
++jackson.version=1.5.2
+ javacc.version=4.2
+ jdiff.version=1.0.9
+ jetty-util.version=6.1.14
+-- 
+1.7.0.4
+

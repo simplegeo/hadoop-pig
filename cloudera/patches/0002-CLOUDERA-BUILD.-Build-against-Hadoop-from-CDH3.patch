@@ -1,0 +1,71 @@
+From 6bb7c6ab6161898e29d22681c684754b89a5498d Mon Sep 17 00:00:00 2001
+From: Eli Collins <eli@cloudera.com>
+Date: Tue, 4 Jan 2011 11:40:45 -0800
+Subject: [PATCH 2/3] CLOUDERA-BUILD. Build against Hadoop from CDH3.
+
+---
+ ivy.xml                  |    8 ++++----
+ ivy/ivysettings.xml      |    3 +++
+ ivy/libraries.properties |    4 ++--
+ 3 files changed, 9 insertions(+), 6 deletions(-)
+
+diff --git a/ivy.xml b/ivy.xml
+index b091684..cecc70c 100644
+--- a/ivy.xml
++++ b/ivy.xml
+@@ -52,10 +52,10 @@
+       conf="compile->master"/>
+     <dependency org="log4j" name="log4j" rev="${log4j.version}"
+       conf="compile->master"/>
+-    <dependency org="org.apache.hadoop" name="hadoop-core" rev="${hadoop-core.version}"
+-      conf="compile->default;test->default"/>
+-    <dependency org="org.apache.hadoop" name="hadoop-test" rev="${hadoop-test.version}"
+-      conf="compile->default;test->default"/>
++    <dependency org="com.cloudera.hadoop" name="hadoop-core" rev="${hadoop-core.version}"
++      conf="compile->default;test->default" />
++    <dependency org="com.cloudera.hadoop" name="hadoop-test" rev="${hadoop-test.version}"
++      conf="compile->default;test->default" />
+     <dependency org="org.mortbay.jetty" name="jetty-util" rev="${jetty-util.version}"
+       conf="compile->master"/>
+     <dependency org="commons-logging" name="commons-logging" rev="${commons-logging.version}"
+diff --git a/ivy/ivysettings.xml b/ivy/ivysettings.xml
+index 0d4239f..2d076dc 100644
+--- a/ivy/ivysettings.xml
++++ b/ivy/ivysettings.xml
+@@ -37,9 +37,11 @@
+   <settings defaultResolver="default"/>
+   <resolvers>
+     <ibiblio name="maven2" root="${repo.maven.org}" pattern="${maven2.pattern.ext}" m2compatible="true"/>
++    <ibiblio name="cloudera-releases" m2compatible="true" root="https://repository.cloudera.com/content/repositories/releases" checkmodified="true"/>
+     <chain name="default" dual="true">
+       <resolver ref="local"/>
+       <resolver ref="maven2"/>
++      <resolver ref="cloudera-releases"/>
+     </chain>
+     <chain name="internal">
+       <resolver ref="local"/>
+@@ -50,5 +52,6 @@
+   </resolvers>
+   <modules>
+     <module organisation="org.apache.pig" name=".*" resolver="internal"/>
++    <module organisation="com.cloudera.hadoop" name=".*" resolver="cloudera-releases" />
+   </modules>
+ </ivysettings>
+diff --git a/ivy/libraries.properties b/ivy/libraries.properties
+index c5564c3..313d54d 100644
+--- a/ivy/libraries.properties
++++ b/ivy/libraries.properties
+@@ -26,8 +26,8 @@ commons-lang.version=2.4
+ checkstyle.version=4.2
+ ivy.version=2.2.0-rc1
+ guava.version=r06
+-hadoop-core.version=0.20.2
+-hadoop-test.version=0.20.2
++hadoop-core.version=0.20.2-737
++hadoop-test.version=0.20.2-737
+ hbase.version=0.20.6
+ hsqldb.version=1.8.0.10
+ jackson.version=1.0.1
+-- 
+1.7.0.4
+

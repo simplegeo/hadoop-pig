@@ -1,0 +1,378 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>Zebra and Streaming</title>
+<link type="text/css" href="skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="skin/print.css" rel="stylesheet">
+<link type="text/css" href="skin/profile.css" rel="stylesheet">
+<script src="skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://www.apache.org/">Apache</a> &gt; <a href="http://hadoop.apache.org/">Hadoop</a> &gt; <a href="http://hadoop.apache.org/pig/">Pig</a><script src="skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<div class="grouplogo">
+<a href="http://hadoop.apache.org/"><img class="logoImage" alt="Hadoop" src="images/hadoop-logo.jpg" title="Apache Hadoop"></a>
+</div>
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogo">
+<a href="http://hadoop.apache.org/pig/"><img class="logoImage" alt="Pig" src="images/pig-logo.gif" title="A platform for analyzing large datasets."></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Search
+    +-->
+<div class="searchbox">
+<form action="http://www.google.com/search" method="get" class="roundtopsmall">
+<input value="" name="sitesearch" type="hidden"><input onFocus="getBlank (this, 'Search the site with google');" size="25" name="q" id="query" type="text" value="Search the site with google">&nbsp; 
+                    <input name="Search" value="Search" type="submit">
+</form>
+</div>
+<!--+
+    |end search
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="http://hadoop.apache.org/pig/">Project</a>
+</li>
+<li>
+<a class="unselected" href="http://wiki.apache.org/pig/">Wiki</a>
+</li>
+<li class="current">
+<a class="selected" href="index.html">Pig 0.8.0 Documentation</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_1.1', 'skin/')" id="menu_1.1Title" class="menutitle">Pig</div>
+<div id="menu_1.1" class="menuitemgroup">
+<div class="menuitem">
+<a href="index.html">Overview</a>
+</div>
+<div class="menuitem">
+<a href="setup.html">Setup</a>
+</div>
+<div class="menuitem">
+<a href="tutorial.html">Tutorial</a>
+</div>
+<div class="menuitem">
+<a href="piglatin_ref1.html">Pig Latin 1</a>
+</div>
+<div class="menuitem">
+<a href="piglatin_ref2.html">Pig Latin 2</a>
+</div>
+<div class="menuitem">
+<a href="cookbook.html">Cookbook</a>
+</div>
+<div class="menuitem">
+<a href="udf.html">UDFs</a>
+</div>
+<div class="menuitem">
+<a href="pigunit.html">PigUnit</a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_selected_1.2', 'skin/')" id="menu_selected_1.2Title" class="menutitle" style="background-image: url('skin/images/chapter_open.gif');">Zebra</div>
+<div id="menu_selected_1.2" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="zebra_overview.html">Zebra Overview </a>
+</div>
+<div class="menuitem">
+<a href="zebra_users.html">Zebra Users </a>
+</div>
+<div class="menuitem">
+<a href="zebra_reference.html">Zebra Reference </a>
+</div>
+<div class="menuitem">
+<a href="zebra_mapreduce.html">Zebra MapReduce </a>
+</div>
+<div class="menuitem">
+<a href="zebra_pig.html">Zebra Pig </a>
+</div>
+<div class="menupage">
+<div class="menupagetitle">Zebra Streaming </div>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.3', 'skin/')" id="menu_1.3Title" class="menutitle">Miscellaneous</div>
+<div id="menu_1.3" class="menuitemgroup">
+<div class="menuitem">
+<a href="api/">API Docs</a>
+</div>
+<div class="menuitem">
+<a href="jdiff/changes.html">API Changes</a>
+</div>
+<div class="menuitem">
+<a href="http://wiki.apache.org/pig/">Wiki</a>
+</div>
+<div class="menuitem">
+<a href="http://wiki.apache.org/pig/FAQ">FAQ</a>
+</div>
+<div class="menuitem">
+<a href="http://hadoop.apache.org/pig/releases.html">Release Notes</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2"></div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<div title="Portable Document Format" class="pdflink">
+<a class="dida" href="zebra_stream.pdf"><img alt="PDF -icon" src="skin/images/pdfdoc.gif" class="skin"><br>
+        PDF</a>
+</div>
+<h1>Zebra and Streaming</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#Overview">Overview</a>
+</li>
+<li>
+<a href="#Configuration+Variables">Configuration Variables</a>
+</li>
+<li>
+<a href="#Zebra+Streaming+Examples">Zebra Streaming Examples</a>
+<ul class="minitoc">
+<li>
+<a href="#Creating+a+Zebra+Table">Creating a Zebra Table</a>
+</li>
+<li>
+<a href="#Checking+Serialization">Checking Serialization</a>
+</li>
+<li>
+<a href="#Locating+Frequently+Visited+Pages">Locating Frequently Visited Pages</a>
+</li>
+<li>
+<a href="#Projecting+Columns">Projecting Columns</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+ 
+ 
+ <!-- OVERVIEW-->
+   
+<a name="N10010"></a><a name="Overview"></a>
+<h2 class="h3">Overview</h2>
+<div class="section">
+<p>Streaming allows you to write application logic in any langugage and to process large amounts
+   of data using the Hadoop framework. Streaming, which traditionally works with text files, can now be 
+   used to process data stored as Zebra tables.</p>
+</div>
+ <!-- END OVERVIEW-->
+  
+  <!-- CONFIGURATION-->
+   
+<a name="N1001E"></a><a name="Configuration+Variables"></a>
+<h2 class="h3">Configuration Variables</h2>
+<div class="section">
+<p>To use Zebra tables with your streaming applications, used the <span class="codefrag">mapred.lib.table.input.projection</span> 
+   variable to specify Zebra columns (fields).</p>
+<pre class="code">
+bin/hadoop jar $streamingJar -D mapred.lib.table.input.projection="word, count"
+</pre>
+</div>
+ <!-- END CONFIGURTION-->
+ 
+ <!-- ZEBRA EXAMPLES-->
+   
+<a name="N10033"></a><a name="Zebra+Streaming+Examples"></a>
+<h2 class="h3">Zebra Streaming Examples</h2>
+<div class="section">
+<p>In the following examples, TableInputFormat is used for the 
+   inputclass and the default TextOutputFormat is used for the outputclass. </p>
+<a name="N1003E"></a><a name="Creating+a+Zebra+Table"></a>
+<h3 class="h4">Creating a Zebra Table</h3>
+<p>Suppose a data file, testfile, contains four fields.</p>
+<pre class="code">
+en bbb1 1 1880
+en bbb2 1 2000
+</pre>
+<p>You can use a simple Pig script to create a Zebra table, testfile-table. 
+    The table consists of one column group with four columns.</p>
+<pre class="code">
+$ cat table-creator.pig
+
+REGISTER $LOCATION/zebra-$version.jar;
+
+testfile = LOAD 'testfile' 
+       USING PigStorage(' ') AS (language:chararray, page:chararray, count:int, size:long);
+       
+STORE testfile INTO 'testfile-table' 
+       USING org.apache.hadoop.zebra.pig.TableStorer('[language, page, count, size]');
+</pre>
+<a name="N10057"></a><a name="Checking+Serialization"></a>
+<h3 class="h4">Checking Serialization</h3>
+<p>This example is a map-only job that checks the serializtion. Note that each line starts 
+   with a tab since the key is an empty string for tables created  by PIG (this changes with sorted tables). </p>
+<pre class="code">
+$ bin/hadoop jar hadoop-0.20.2-dev-streaming.jar -D mapred.reduce.tasks=0 \
+        -input testfile-table -output output -mapper 'cat' \
+        -inputformat org.apache.hadoop.zebra.mapred.TableInputFormat
+
+$ grep 'en' output/part-00000 | head
+
+(en,bbb1,1,1880)
+(en,bbb2,1,2000)
+(en,bbb3,1,1950)
+(en,bbb4,1,48900
+</pre>
+<a name="N10069"></a><a name="Locating+Frequently+Visited+Pages"></a>
+<h3 class="h4">Locating Frequently Visited Pages</h3>
+<p>This Perl script sorts the pages on number of page view counts. The script outputs space padded count 
+ so that string sorting results in correct output. The first TAB separates the key and value for Hadoop streaming.</p>
+<pre class="code">
+while (&lt;&gt;) {
+
+    chomp;
+    
+    s/.?\t(.*)$/$1/ or next;  # ignore the key (if any) and remove braces
+    
+    split ','; #comma seperated list. 
+    
+    # key is space padded 3rd column.
+    
+    printf("%8d\t%s\n", $_[2], "@_") if @_ == 4; # without a projection 
+    
+    # printf("%8d\t%s\n", shift @_, join(',', @_)); # with projection="count, page"
+}
+</pre>
+<p>Streaming command:</p>
+<pre class="code">
+$ bin/hadoop jar hadoop-0.20.2-dev-streaming.jar 
+        -input testfile-table -output output -mapper table-mapper.pl -reducer cat \
+        -inputformat org.apache.hadoop.zebra.mapred.TableInputFormat
+</pre>
+<p>Pages are printed in increasing order of page view counts.</p>
+<pre class="code">
+$ tail output/part-00000
+     10      fr bbb1 10 5883
+     14      de bbb2 14 2120
+     20      it bbb3 20 229
+     45      ja bbb4 45 75
+     47      de bbb5 47 43488
+     63      en bbb6 63 2404
+     73      de bbb7 73 1090
+    129      en bbb8 129 31
+    188      en bbb9 188 37
+    222      en bbb10 222 469
+</pre>
+<a name="N10089"></a><a name="Projecting+Columns"></a>
+<h3 class="h4">Projecting Columns</h3>
+<p>Use projection to view only a few columns (fields) of a very large table. Modify the output line in 
+   the table-mapper.pl script as shown below and run the following streaming command:</p>
+<pre class="code">
+$ bin/hadoop jar hadoop-0.20.2-dev-streaming.jar -D mapred.lib.table.input.projection="count,page" \
+        -input testfile-table -output output -mapper table-mapper.pl -reducer cat \
+        -inputformat org.apache.hadoop.zebra.mapred.TableInputFormat
+
+$ tail output/part-00000
+     10      bbb1
+     14      bbb2
+     20      bbb3
+     45      bbb4
+     47      bbb5
+     63      bbb6
+     73      bbb7
+    129      bbb8
+    188      bbb9
+    222      bbb10
+</pre>
+</div>
+  <!-- END ZEBRA EXAMPLES-->    
+  
+   
+
+ 
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2007-2011 <a href="http://www.apache.org/licenses/">The Apache Software Foundation.</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

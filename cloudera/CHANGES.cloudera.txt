@@ -1,0 +1,17 @@
+commit 221c28f846b0a890184c437833eb53ddc3a0b50e
+Author: Andrew Bayer <andrew.bayer@gmail.com>
+Date:   Thu Jan 27 16:04:13 2011 -0800
+
+    CLOUDERA-BUILD. Changes to support CDH Mavenization.
+
+commit 6bb7c6ab6161898e29d22681c684754b89a5498d
+Author: Eli Collins <eli@cloudera.com>
+Date:   Tue Jan 4 11:40:45 2011 -0800
+
+    CLOUDERA-BUILD. Build against Hadoop from CDH3.
+
+commit c169940bf826e222655761b9c4eb0604b9c6be4a
+Author: Eli Collins <eli@cloudera.com>
+Date:   Tue Jan 4 10:25:20 2011 -0800
+
+    CLOUDERA-BUILD. Add cloudera build directory and example confs.

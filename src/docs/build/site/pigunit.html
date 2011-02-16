@@ -1,0 +1,477 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>PigUnit - Pig script testing simplified.</title>
+<link type="text/css" href="skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="skin/print.css" rel="stylesheet">
+<link type="text/css" href="skin/profile.css" rel="stylesheet">
+<script src="skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://www.apache.org/">Apache</a> &gt; <a href="http://hadoop.apache.org/">Hadoop</a> &gt; <a href="http://hadoop.apache.org/pig/">Pig</a><script src="skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<div class="grouplogo">
+<a href="http://hadoop.apache.org/"><img class="logoImage" alt="Hadoop" src="images/hadoop-logo.jpg" title="Apache Hadoop"></a>
+</div>
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogo">
+<a href="http://hadoop.apache.org/pig/"><img class="logoImage" alt="Pig" src="images/pig-logo.gif" title="A platform for analyzing large datasets."></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Search
+    +-->
+<div class="searchbox">
+<form action="http://www.google.com/search" method="get" class="roundtopsmall">
+<input value="" name="sitesearch" type="hidden"><input onFocus="getBlank (this, 'Search the site with google');" size="25" name="q" id="query" type="text" value="Search the site with google">&nbsp; 
+                    <input name="Search" value="Search" type="submit">
+</form>
+</div>
+<!--+
+    |end search
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="http://hadoop.apache.org/pig/">Project</a>
+</li>
+<li>
+<a class="unselected" href="http://wiki.apache.org/pig/">Wiki</a>
+</li>
+<li class="current">
+<a class="selected" href="index.html">Pig 0.8.0 Documentation</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_selected_1.1', 'skin/')" id="menu_selected_1.1Title" class="menutitle" style="background-image: url('skin/images/chapter_open.gif');">Pig</div>
+<div id="menu_selected_1.1" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="index.html">Overview</a>
+</div>
+<div class="menuitem">
+<a href="setup.html">Setup</a>
+</div>
+<div class="menuitem">
+<a href="tutorial.html">Tutorial</a>
+</div>
+<div class="menuitem">
+<a href="piglatin_ref1.html">Pig Latin 1</a>
+</div>
+<div class="menuitem">
+<a href="piglatin_ref2.html">Pig Latin 2</a>
+</div>
+<div class="menuitem">
+<a href="cookbook.html">Cookbook</a>
+</div>
+<div class="menuitem">
+<a href="udf.html">UDFs</a>
+</div>
+<div class="menupage">
+<div class="menupagetitle">PigUnit</div>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.2', 'skin/')" id="menu_1.2Title" class="menutitle">Zebra</div>
+<div id="menu_1.2" class="menuitemgroup">
+<div class="menuitem">
+<a href="zebra_overview.html">Zebra Overview </a>
+</div>
+<div class="menuitem">
+<a href="zebra_users.html">Zebra Users </a>
+</div>
+<div class="menuitem">
+<a href="zebra_reference.html">Zebra Reference </a>
+</div>
+<div class="menuitem">
+<a href="zebra_mapreduce.html">Zebra MapReduce </a>
+</div>
+<div class="menuitem">
+<a href="zebra_pig.html">Zebra Pig </a>
+</div>
+<div class="menuitem">
+<a href="zebra_stream.html">Zebra Streaming </a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.3', 'skin/')" id="menu_1.3Title" class="menutitle">Miscellaneous</div>
+<div id="menu_1.3" class="menuitemgroup">
+<div class="menuitem">
+<a href="api/">API Docs</a>
+</div>
+<div class="menuitem">
+<a href="jdiff/changes.html">API Changes</a>
+</div>
+<div class="menuitem">
+<a href="http://wiki.apache.org/pig/">Wiki</a>
+</div>
+<div class="menuitem">
+<a href="http://wiki.apache.org/pig/FAQ">FAQ</a>
+</div>
+<div class="menuitem">
+<a href="http://hadoop.apache.org/pig/releases.html">Release Notes</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2"></div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<div title="Portable Document Format" class="pdflink">
+<a class="dida" href="pigunit.pdf"><img alt="PDF -icon" src="skin/images/pdfdoc.gif" class="skin"><br>
+        PDF</a>
+</div>
+<h1>PigUnit - Pig script testing simplified.</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#Overview">Overview</a>
+</li>
+<li>
+<a href="#PigUnit+Example">PigUnit Example</a>
+<ul class="minitoc">
+<li>
+<a href="#Java+test">Java test</a>
+</li>
+<li>
+<a href="#top_queries.pig">top_queries.pig</a>
+</li>
+<li>
+<a href="#Run">Run</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#Running+PigUnit">Running PigUnit</a>
+<ul class="minitoc">
+<li>
+<a href="#Local+Mode">Local Mode</a>
+</li>
+<li>
+<a href="#Mapreduce+Mode">Mapreduce Mode</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#Building+PigUnit">Building PigUnit</a>
+</li>
+<li>
+<a href="#Troubleshooting+Tips">Troubleshooting Tips</a>
+<ul class="minitoc">
+<li>
+<a href="#Classpath+in+Mapreduce+mode">Classpath in Mapreduce mode</a>
+</li>
+<li>
+<a href="#UDF+jars+Not+Found">UDF jars Not Found</a>
+</li>
+<li>
+<a href="#Storing+data">Storing data</a>
+</li>
+<li>
+<a href="#Cache+archive">Cache archive</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#Future+Enhancements">Future Enhancements</a>
+</li>
+</ul>
+</div>
+
+    
+<a name="N1000D"></a><a name="Overview"></a>
+<h2 class="h3">Overview</h2>
+<div class="section">
+<p>PigUnit is a simple xUnit framework that enables you to easily test your Pig scripts.
+        With
+        PigUnit you can perform unit testing, regression testing, and rapid prototyping.
+        No cluster
+        set up is required if you run Pig in local mode.
+      </p>
+</div>
+
+    
+<a name="N10017"></a><a name="PigUnit+Example"></a>
+<h2 class="h3">PigUnit Example</h2>
+<div class="section">
+<p>We want to compute a top N of the most common queries.
+        The Pig script is basic and very
+        similar to the Query Phrase Popularity in the Pig tutorial.
+        It
+        expects in input a file of
+        queries and a parameter n
+        (n is 2 in our case in order to do a top 2). 
+      </p>
+<p>Setting up a test for this script is simple as the argument and the input data are
+        specified by just two arrays of text. It is the same for the expected output of the
+        script
+        that will be compared to the actual result of the execution of the Pig script. 
+      </p>
+<p>
+        Many examples are available in the
+        <a href="http://svn.apache.org/viewvc/pig/trunk/test/org/apache/pig/test/pigunit/TestPigTest.java">PigUnit tests</a>
+        .
+      </p>
+<a name="N1002A"></a><a name="Java+test"></a>
+<h3 class="h4">Java test</h3>
+<pre class="code">
+  @Test
+  public void testTop2Queries() {
+    String[] args = {
+        "n=2",
+        };
+ 
+    PigTest test = new PigTest("top_queries.pig", args);
+ 
+    String[] input = {
+        "yahoo",
+        "yahoo",
+        "yahoo",
+        "twitter",
+        "facebook",
+        "facebook",
+        "linkedin",
+    };
+ 
+    String[] output = {
+        "(yahoo,3)",
+        "(facebook,2)",
+    };
+ 
+    test.assertOutput("data", input, "queries_limit", output);
+  }
+</pre>
+<a name="N10035"></a><a name="top_queries.pig"></a>
+<h3 class="h4">top_queries.pig</h3>
+<pre class="code">
+data =
+    LOAD 'input'
+    AS (query:CHARARRAY);
+     
+queries_group =
+    GROUP data
+    BY query; 
+    
+queries_count = 
+    FOREACH queries_group 
+    GENERATE 
+        group AS query, 
+        COUNT(data) AS total;
+        
+queries_ordered =
+    ORDER queries_count
+    BY total DESC, query;
+            
+queries_limit =
+    LIMIT queries_ordered $n;
+
+STORE queries_limit INTO 'output';
+</pre>
+<a name="N10040"></a><a name="Run"></a>
+<h3 class="h4">Run</h3>
+<p>Then the test can be executed by JUnit (or any other Java testing framework). It
+          requires:
+        </p>
+<ol>
+          
+<li>pig.jar</li>
+          
+<li>pigunit.jar</li>
+        
+</ol>
+<p>It takes about 25s to run and should pass.
+          In case of error (for example change the
+          parameter n to n=3),
+          the diff of output is displayed:
+        </p>
+<pre class="code">
+junit.framework.ComparisonFailure: null expected:&lt;...ahoo,3)
+(facebook,2)[]&gt; but was:&lt;...ahoo,3)
+(facebook,2)[
+(linkedin,1)]&gt;
+        at junit.framework.Assert.assertEquals(Assert.java:81)
+        at junit.framework.Assert.assertEquals(Assert.java:87)
+        at org.apache.pig.pigunit.PigTest.assertEquals(PigTest.java:272)
+</pre>
+</div>
+
+    
+<a name="N1005B"></a><a name="Running+PigUnit"></a>
+<h2 class="h3">Running PigUnit</h2>
+<div class="section">
+<a name="N10061"></a><a name="Local+Mode"></a>
+<h3 class="h4">Local Mode</h3>
+<p>
+        PigUnit runs in Pig's local mode by default.
+        Local mode is fast and enables you to use your local file system as the HDFS cluster.
+        Local mode does not require a real cluster but a new local one is created each time. 
+      </p>
+<a name="N1006B"></a><a name="Mapreduce+Mode"></a>
+<h3 class="h4">Mapreduce Mode</h3>
+<p>PigUnit also runs in Pig's mapreduce mode.
+        Mapreduce mode requires you to use a Hadoop cluster and HDFS installation.
+        It is enabled when the Java system property pigunit.exectype.cluster is set to any value:
+      e.g. -Dpigunit.exectype.cluster=true or System.getProperties().setProperty("pigunit.exectype.cluster", "true").
+
+        The cluster you select must be specified in the CLASSPATH (similar to the HADOOP_CONF_DIR variable).
+      </p>
+</div>
+
+    
+<a name="N10076"></a><a name="Building+PigUnit"></a>
+<h2 class="h3">Building PigUnit</h2>
+<div class="section">
+<p>To compile PigUnit (pigunit.jar), run this command from the Pig trunk:</p>
+<pre class="code">
+$pig_trunk ant pigunit-jar   
+</pre>
+</div>
+
+    
+<a name="N10084"></a><a name="Troubleshooting+Tips"></a>
+<h2 class="h3">Troubleshooting Tips</h2>
+<div class="section">
+<p>Common problems you may encounter are discussed below.</p>
+<a name="N1008D"></a><a name="Classpath+in+Mapreduce+mode"></a>
+<h3 class="h4">Classpath in Mapreduce mode</h3>
+<p>When using PigUnit in mapreduce mode, be sure to include the $HADOOP_CONF_DIR of the
+          cluster in your CLASSPATH.</p>
+<p>
+          The default value is ~/pigtest/conf.
+        </p>
+<pre class="code">
+org.apache.pig.backend.executionengine.ExecException: ERROR 4010: Cannot find hadoop configurations in classpath (neither hadoop-site.xml nor core-site.xml was found in the classpath).If you plan to use local mode, please put -x local option in command line
+         </pre>
+<a name="N1009E"></a><a name="UDF+jars+Not+Found"></a>
+<h3 class="h4">UDF jars Not Found</h3>
+<p>This error means that you are missing some jars in your test environment.</p>
+<pre class="code">
+WARN util.JarManager: Couldn't find the jar for org.apache.pig.piggybank.evaluation.string.LOWER, skip it
+         </pre>
+<a name="N100AC"></a><a name="Storing+data"></a>
+<h3 class="h4">Storing data</h3>
+<p>Pig currently drops all STORE and DUMP commands. You can tell PigUnit to keep the
+          commands and execute the script:</p>
+<pre class="code">
+test = new PigTest(PIG_SCRIPT, args);   
+test.unoverride("STORE");
+test.runScript();
+</pre>
+<a name="N100BA"></a><a name="Cache+archive"></a>
+<h3 class="h4">Cache archive</h3>
+<p>For cache archive to work, your test environment needs to have the cache archive options
+          specified by Java properties or in an additional XML configuration in its CLASSPATH.</p>
+<p>If you use a local cluster, you need to set the required environment variables before
+          starting it:</p>
+<pre class="code">export LD_LIBRARY_PATH=/home/path/to/lib</pre>
+</div>
+
+    
+<a name="N100CC"></a><a name="Future+Enhancements"></a>
+<h2 class="h3">Future Enhancements</h2>
+<div class="section">
+<p>Improvement and other components based on PigUnit that could be built later.</p>
+<p>For example, we could build a PigTestCase and PigTestSuite on top of PigTest to:</p>
+<ol>
+        
+<li>Add the notion of workspaces for each test.</li>
+        
+<li>Remove the boiler plate code appearing when there is more than one test methods.</li>
+        
+<li>Add a standalone utility that reads test configurations and generates a test report.
+        </li>
+      
+</ol>
+</div>
+  
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2007-2011 <a href="http://www.apache.org/licenses/">The Apache Software Foundation.</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>Zebra Users Guide</title>
+<link type="text/css" href="skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="skin/print.css" rel="stylesheet">
+<link type="text/css" href="skin/profile.css" rel="stylesheet">
+<script src="skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://www.apache.org/">Apache</a> &gt; <a href="http://hadoop.apache.org/">Hadoop</a> &gt; <a href="http://hadoop.apache.org/pig/">Pig</a><script src="skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<div class="grouplogo">
+<a href="http://hadoop.apache.org/"><img class="logoImage" alt="Hadoop" src="images/hadoop-logo.jpg" title="Apache Hadoop"></a>
+</div>
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogo">
+<a href="http://hadoop.apache.org/pig/"><img class="logoImage" alt="Pig" src="images/pig-logo.gif" title="A platform for analyzing large datasets."></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Search
+    +-->
+<div class="searchbox">
+<form action="http://www.google.com/search" method="get" class="roundtopsmall">
+<input value="" name="sitesearch" type="hidden"><input onFocus="getBlank (this, 'Search the site with google');" size="25" name="q" id="query" type="text" value="Search the site with google">&nbsp; 
+                    <input name="Search" value="Search" type="submit">
+</form>
+</div>
+<!--+
+    |end search
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="http://hadoop.apache.org/pig/">Project</a>
+</li>
+<li>
+<a class="unselected" href="http://wiki.apache.org/pig/">Wiki</a>
+</li>
+<li class="current">
+<a class="selected" href="index.html">Pig 0.8.0 Documentation</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_1.1', 'skin/')" id="menu_1.1Title" class="menutitle">Pig</div>
+<div id="menu_1.1" class="menuitemgroup">
+<div class="menuitem">
+<a href="index.html">Overview</a>
+</div>
+<div class="menuitem">
+<a href="setup.html">Setup</a>
+</div>
+<div class="menuitem">
+<a href="tutorial.html">Tutorial</a>
+</div>
+<div class="menuitem">
+<a href="piglatin_ref1.html">Pig Latin 1</a>
+</div>
+<div class="menuitem">
+<a href="piglatin_ref2.html">Pig Latin 2</a>
+</div>
+<div class="menuitem">
+<a href="cookbook.html">Cookbook</a>
+</div>
+<div class="menuitem">
+<a href="udf.html">UDFs</a>
+</div>
+<div class="menuitem">
+<a href="pigunit.html">PigUnit</a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_selected_1.2', 'skin/')" id="menu_selected_1.2Title" class="menutitle" style="background-image: url('skin/images/chapter_open.gif');">Zebra</div>
+<div id="menu_selected_1.2" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="zebra_overview.html">Zebra Overview </a>
+</div>
+<div class="menupage">
+<div class="menupagetitle">Zebra Users </div>
+</div>
+<div class="menuitem">
+<a href="zebra_reference.html">Zebra Reference </a>
+</div>
+<div class="menuitem">
+<a href="zebra_mapreduce.html">Zebra MapReduce </a>
+</div>
+<div class="menuitem">
+<a href="zebra_pig.html">Zebra Pig </a>
+</div>
+<div class="menuitem">
+<a href="zebra_stream.html">Zebra Streaming </a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.3', 'skin/')" id="menu_1.3Title" class="menutitle">Miscellaneous</div>
+<div id="menu_1.3" class="menuitemgroup">
+<div class="menuitem">
+<a href="api/">API Docs</a>
+</div>
+<div class="menuitem">
+<a href="jdiff/changes.html">API Changes</a>
+</div>
+<div class="menuitem">
+<a href="http://wiki.apache.org/pig/">Wiki</a>
+</div>
+<div class="menuitem">
+<a href="http://wiki.apache.org/pig/FAQ">FAQ</a>
+</div>
+<div class="menuitem">
+<a href="http://hadoop.apache.org/pig/releases.html">Release Notes</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2"></div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<div title="Portable Document Format" class="pdflink">
+<a class="dida" href="zebra_users.pdf"><img alt="PDF -icon" src="skin/images/pdfdoc.gif" class="skin"><br>
+        PDF</a>
+</div>
+<h1>Zebra Users Guide</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#Column+Security">Column Security</a>
+</li>
+<li>
+<a href="#Drop+Column+Groups">Drop Column Groups</a>
+</li>
+<li>
+<a href="#Order-Preserving+Sorted+Table+Union">Order-Preserving Sorted Table Union</a>
+<ul class="minitoc">
+<li>
+<a href="#Indexing+Sort-Unioned++Results">Indexing Sort-Unioned  Results</a>
+</li>
+<li>
+<a href="#MapReduce+Jobs">MapReduce Jobs</a>
+</li>
+<li>
+<a href="#Pig+Scripts">Pig Scripts</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#Merge+Join+and+Sorted+Tables">Merge Join and Sorted Tables</a>
+</li>
+</ul>
+</div>
+ 
+
+
+  <!-- COLUMN SECURITY-->
+   
+<a name="N10010"></a><a name="Column+Security"></a>
+<h2 class="h3">Column Security</h2>
+<div class="section">
+<p>
+<strong>NOTE: THIS FEATURE IS EXPERIMENTAL AND SUBJECT TO CHANGE IN THE FUTURE</strong>
+</p>
+<p>Since Zebra supports reading and writing data in a column-oriented fashion, you can store secure and non-secure data in separate columns.
+ Then, using the HDFS file system, you can enable access control by setting the appropriate permissions on the columns containing secure data.
+ </p>
+<p>About the data:</p>
+<ul>
+
+<li>All the files and directories containing secure data will have the same permissions and groups within a table.  </li>
+
+<li>If no security information is provided, then the HDFS file system default behavior applies.</li>
+
+</ul>
+<p></p>
+<p>About the users:</p>
+<ul>
+
+<li>The user who creates the data will set the file permissions.</li> 
+
+<li>If a permissions-related error happens, it will be communicated to the user as a normal IO exception. </li>
+
+<li>A user running a client application needs to have chgrp permissions to execute the "secure by group" operations on a table. </li>
+
+<li>If a user running a client application does not have read permissions for a secure column group, an IO exception is issued.</li>
+
+
+</ul>
+<p></p>
+<p>One simple Pig example:</p>
+<pre class="code">
+a = load '/path_to_input_table' as (a:int, b:float,c:long,d:double);
+b = store a into '/path_to_output_table' using org.apache.hadoop.zebra.pig.TableStorer('[a, b] secure by group:secure perm:640');
+</pre>
+<p>One simple MapReduce example:</p>
+<pre class="code">
+zStorageHint = ZebraStorageHint.createZebraStorageHint(&ldquo;[a, b] secure by group:secure perm:640&rdquo;);
+zSchema = &hellip;;
+zSortInfo = &hellip;;
+setStorageInfo(jobConf, zSchema, zStorageHint, zSortInfo);
+</pre>
+</div>
+  <!-- END COLUMN SECURITY -->  
+  
+   <!-- DROP COLUMN GROUPS -->    
+    
+<a name="N10052"></a><a name="Drop+Column+Groups"></a>
+<h2 class="h3">Drop Column Groups</h2>
+<div class="section">
+<p>
+<strong>NOTE: THIS FEATURE IS EXPERIMENTAL AND SUBJECT TO CHANGE IN THE FUTURE</strong>
+</p>
+<p>Zebra allows you to delete a column group (CG) using the column group name. 
+   For examples, see <a href="zebra_mapreduce.html#Drop+Column+Groups">Drop Column Groups</a>.  </p>
+<p>Please note the following:</p>
+<ul>
+
+<li>Any failures during a drop will leave the table in consistent state (either with or with out the column group). 
+While success of a column group removal guarantees a column removal, a failure does not imply the column group is not removed. 
+In rare cases, you might receive an error but the column could still be deleted. </li>
+
+<li>MapReduce jobs and other clients that are currently accessing the table might fail with exceptions. 
+It is recommended that column groups be dropped when there are no accesses to a table. 
+It might not be feasible to ensure that there are no readers for a table; in these cases the readers should handle the exception. </li>
+
+<li>Once a column group is dropped, the column group data is deleted from the underlying file system. 
+In the case of the HDFS filesystem, it may not imply that physical data is actually removed because of earlier snapshot of the file system; handling this is out side the scope of Zebra.</li>
+
+<li>Concurrent column group deletions are supported and their access is serialized. </li>
+
+<li>Deleting a non-existant column group or a column group that is already deleted is not allowed.</li>
+
+<li>If you delete all the remaining columns in a table, it logically leaves an empty null table. The difference between a non-existant table and a table with zero columns is that opening a non-existant table causes an error. </li>
+ 
+</ul>
+</div>   
+   <!-- END DROP COLUMN GROUPS -->    
+   
+   <!-- ORDER PRESERVE SORT-->    
+    
+<a name="N10080"></a><a name="Order-Preserving+Sorted+Table+Union"></a>
+<h2 class="h3">Order-Preserving Sorted Table Union</h2>
+<div class="section">
+<p>
+With Zebra you can group all records from all "delta tables" on some sort key to form an output set of records while preserving the sorted ordering of the records in the original tables. For instance, if the client application wants to fetch records from a union of tables of T1, T2 on a column "C1", then all records from T1 with a particular value of column "c1" and all records from T2 with that value of column "C1" will be output. The ordering of the rows of the output set of the same value of column "C1" is undefined. As a prerequisite, both T1 and T2 must be sorted on column "C1". More specifically the input and results could be as follows: 
+</p>
+<p>Table T1: </p>
+<pre class="code">
+C1    C2  
+------------- 
+A     11  
+A     12  
+B     21  
+B     22  
+D     41  
+</pre>
+<p>Table T2: </p>
+<pre class="code">
+C1    C2 
+------------- 
+A     101  
+A     102  
+C     301  
+D     401  
+</pre>
+<p>T1 Sort-Unioned with T2: </p>
+<pre class="code">
+source_table  	 C1     C2
+------------------------------
+0                A      11  
+1                A      101  
+0                A      12  
+1                A      102  
+0                B      21  
+0                B      22  
+1                C      301  
+1                D      401  
+0                D      41  
+</pre>
+<p>
+Note that the sortness is guaranteed per mapper and among all mappers arranged with certain ordering, but not among mappers arranged in any ordering. For instance, the outputs generated by four mappers, m1, m2, m3 and m4, could be in total ordering between m1, m3, m2 and m4, but not in any other arrangements. 
+</p>
+<a name="N100A1"></a><a name="Indexing+Sort-Unioned++Results"></a>
+<h3 class="h4">Indexing Sort-Unioned  Results</h3>
+<p>
+The order-preserving sort-unioned results above can be further indexed by the component tables if the projection contains column(s) named "source_table". If so specified, the component table index is output at the position(s) as specified in the projection list. 
+
+If the underlying table is not a union of sorted tables, the use of the special column name in a projection will cause an exception. 
+
+If an attempt is made to create a table of a column named "source_table", an exception will be thrown as the name is reserved by zebra for the virtual name. 
+</p>
+<a name="N100AB"></a><a name="MapReduce+Jobs"></a>
+<h3 class="h4">MapReduce Jobs</h3>
+<p>
+TableInputFormat has static method, requireSortedTable, that allows the caller to specify the behavior of a single sorted table or an order-preserving sorted table union as described above. The method ensures all tables in a union are sorted. For more information, see <a href="zebra_mapreduce.html#TableInputFormat">TableInputFormat</a>.
+</p>
+<p>One simple example: A order-preserving sorted union B. A and B are sorted tables. </p>
+<pre class="code">
+...
+TableInputFormat.setInputpaths("path_to_A, path_to_B"); 
+TableInputFormat.requireSortedTable(); 
+TableInputFormat.setProjection(conf, "f1, f2, source_table"); 
+...
+</pre>
+<a name="N100C0"></a><a name="Pig+Scripts"></a>
+<h3 class="h4">Pig Scripts</h3>
+<p>Pig takes an extra string argument of "sorted" indicating the desire to load from a sorted table or an order-preserving sorted table union. 
+For  more information, see <a href="zebra_pig.html#Zebra+Pig+Examples">Zebra Pig Examples</a>.</p>
+<p>One simple example:</p>
+<pre class="code">
+...
+T = load ('path_to_A, path_to_B') using TableLoader('f1, f2, source_table', 'sorted'); 
+...
+</pre>
+</div>
+<!-- END ORDER PRESERVE SORT-->   
+
+  <!--MERGE JOIN-->
+   
+<a name="N100DA"></a><a name="Merge+Join+and+Sorted+Tables"></a>
+<h2 class="h3">Merge Join and Sorted Tables</h2>
+<div class="section">
+<p>In data pipelines, there is often a need to join datasets. Zebra supports merge join on Zebra tables. 
+For  more information, see <a href="zebra_pig.html#Map-Side+Group+and+Merge+Join">Merge Join</a>.</p>
+<p>One simple example:</p>
+<pre class="code">
+class myMapper extends Mapper&lt;&hellip;&gt; {
+  &hellip;
+  Object keyGenerator;
+  &hellip;
+  public void map(&hellip;) {
+     bytesKey = BasicTableOutputFormat.getSortKey(keyGenerator, userKey);
+     &hellip;
+     output.collect(bytesKey, valueTuple);
+     &hellip;
+  }
+  public void configure(JobConf job) {
+     keyGenerator = BasicTableOutputFormat.getSortKeyGenerator(job);
+     &hellip;
+  }
+}
+
+</pre>
+</div>
+   <!--END MERGE JOIN-->
+    
+ 
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2007-2011 <a href="http://www.apache.org/licenses/">The Apache Software Foundation.</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

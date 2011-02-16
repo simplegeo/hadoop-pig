@@ -1,0 +1,6 @@
+pig.version=org.apache.pig:pig.version
+version=org.apache.pig:pig.version
+reactor.repo=https://repository.cloudera.com/content/repositories/snapshots
+hadoop-core.version=org.apache.hadoop:hadoop-core.version
+hadoop-test.version=org.apache.hadoop:hadoop-test.version
+hbase.version=org.apache.hbase:hbase.version
