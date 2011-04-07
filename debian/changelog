@@ -1,3 +1,12 @@
+hadoop-pig (0.8.0+3-1sg6) UNRELEASED; urgency=low
+
+  [ dsmith ]
+  * Allow the CLASSPATH to be configured by the env sh script
+
+  [ SimpleGeo Nerds ]
+
+ -- SimpleGeo Nerds <nerds@simplegeo.com>  Thu, 07 Apr 2011 21:23:34 +0000
+
 hadoop-pig (0.8.0+3-1sg3) UNRELEASED; urgency=low
 
   [ Jeremy Grosser ]
