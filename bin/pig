@@ -83,7 +83,7 @@ then
         PIG_CONF_DIR=$confdir
     fi
 fi
-
+ 
 # Allow alternate conf dir location.
 PIG_CONF_DIR="${PIG_CONF_DIR:-$PIG_HOME/conf}"
 
@@ -96,14 +96,14 @@ if [ "$JAVA_HOME" != "" ]; then
     #echo "run java in $JAVA_HOME"
     JAVA_HOME=$JAVA_HOME
 fi
-
+    
 if [ "$JAVA_HOME" = "" ]; then
     echo "Error: JAVA_HOME is not set."
     exit 1
 fi
 
 JAVA=$JAVA_HOME/bin/java
-JAVA_HEAP_MAX=-Xmx1000m
+JAVA_HEAP_MAX=-Xmx1000m 
 
 # check envvars which might override default args
 if [ "$PIG_HEAPSIZE" != "" ]; then
@@ -111,7 +111,7 @@ if [ "$PIG_HEAPSIZE" != "" ]; then
 fi
 
 # CLASSPATH initially contains $PIG_CONF_DIR
-CLASSPATH=${CLASSPATH}:${PIG_CONF_DIR}
+CLASSPATH="${PIG_CONF_DIR}"
 CLASSPATH=${CLASSPATH}:$JAVA_HOME/lib/tools.jar
 
 # for developers, add Pig classes to CLASSPATH
