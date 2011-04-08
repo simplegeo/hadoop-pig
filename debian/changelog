@@ -1,3 +1,16 @@
+hadoop-pig (0.8.0+3-1sg9) UNRELEASED; urgency=low
+
+  [ dsmith ]
+  * This is a hack but will work for now
+  * Revert "This is a hack but will work for now" This reverts commit
+    4db4deb075c6a76f160ef96a10916f3cef3390ae.
+  * Revert "Allow the CLASSPATH to be configured by the env sh script"
+    This reverts commit 6344614ea9a3ee77c691833c70d6f234e679f9db.
+
+  [ SimpleGeo Nerds ]
+
+ -- SimpleGeo Nerds <nerds@simplegeo.com>  Fri, 08 Apr 2011 20:42:10 +0000
+
 hadoop-pig (0.8.0+3-1sg6) UNRELEASED; urgency=low
 
   [ dsmith ]
