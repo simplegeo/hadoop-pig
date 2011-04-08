@@ -114,6 +114,20 @@ fi
 CLASSPATH="${PIG_CONF_DIR}"
 CLASSPATH=${CLASSPATH}:$JAVA_HOME/lib/tools.jar
 
+# Add installed version of Hadoop to classpath
+HADOOP_HOME=${HADOOP_HOME:-/usr/lib/hadoop}
+. $HADOOP_HOME/bin/hadoop-config.sh
+
+for jar in $HADOOP_HOME/hadoop-core-*.jar $HADOOP_HOME/lib/* ; do
+   CLASSPATH=$CLASSPATH:$jar
+done
+if [ ! -z "$HADOOP_CLASSPATH" ] ; then
+  CLASSPATH=$CLASSPATH:$HADOOP_CLASSPATH
+fi
+if [ ! -z "$HADOOP_CONF_DIR" ] ; then
+  CLASSPATH=$CLASSPATH:$HADOOP_CONF_DIR
+fi
+
 # for developers, add Pig classes to CLASSPATH
 if [ -d "$PIG_HOME/build/classes" ]; then
     CLASSPATH=${CLASSPATH}:$PIG_HOME/build/classes
@@ -141,20 +155,6 @@ for lib in $PIG_HOME/lib/*.jar $PIG_HOME/build/ivy/lib/Pig/*.jar ; do
         CLASSPATH=$CLASSPATH:$lib
     fi
 done
-
-# Add installed version of Hadoop to classpath
-HADOOP_HOME=${HADOOP_HOME:-/usr/lib/hadoop}
-. $HADOOP_HOME/bin/hadoop-config.sh
-
-for jar in $HADOOP_HOME/hadoop-core-*.jar $HADOOP_HOME/lib/* ; do
-   CLASSPATH=$CLASSPATH:$jar
-done
-if [ ! -z "$HADOOP_CLASSPATH" ] ; then
-  CLASSPATH=$CLASSPATH:$HADOOP_CLASSPATH
-fi
-if [ ! -z "$HADOOP_CONF_DIR" ] ; then
-  CLASSPATH=$CLASSPATH:$HADOOP_CONF_DIR
-fi
 
 # add user-specified CLASSPATH last
 if [ "$PIG_CLASSPATH" != "" ]; then
