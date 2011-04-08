@@ -1,3 +1,12 @@
+hadoop-pig (0.8.0+3-1sg12) UNRELEASED; urgency=low
+
+  [ dsmith ]
+  * The pig execution script should load in UDFS jars
+
+  [ SimpleGeo Nerds ]
+
+ -- SimpleGeo Nerds <nerds@simplegeo.com>  Fri, 08 Apr 2011 22:04:23 +0000
+
 hadoop-pig (0.8.0+3-1sg11) UNRELEASED; urgency=low
 
   [ dsmith ]
