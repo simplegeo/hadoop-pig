@@ -96,7 +96,7 @@ if [ "$JAVA_HOME" != "" ]; then
     #echo "run java in $JAVA_HOME"
     JAVA_HOME=$JAVA_HOME
 fi
-    
+
 if [ "$JAVA_HOME" = "" ]; then
     echo "Error: JAVA_HOME is not set."
     exit 1
@@ -134,6 +134,14 @@ if [ -d "$PIG_HOME/build/classes" ]; then
 fi
 if [ -d "$PIG_HOME/build/test/classes" ]; then
     CLASSPATH=${CLASSPATH}:$PIG_HOME/build/test/classes
+fi
+
+if [ "$UDFS_DIR" != "" ]; then
+  if [ -d "$UDFS_DIR" ] ; then
+    for f in $UDFS_DIR/*.jar; do
+      CLASSPATH=${CLASSPATH}:$f;
+    done
+  fi
 fi
 
 # so that filenames w/ spaces are handled correctly in loops below
